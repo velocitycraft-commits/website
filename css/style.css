@@ -254,23 +254,18 @@ h6,
 
 }
 
-.logo {
-  height: 45px;
-  width: auto;
-  object-fit: contain;
-  filter: brightness(0) saturate(100%) invert(10%) sepia(95%) saturate(500%) hue-rotate(210deg);
-  transition: all 0.2s ease-in-out;
+.logo-wrap{
+  height:48px;          /* visible height */
+  width:auto;
+  overflow:hidden;      /* clip excess whitespace inside the PNG */
+  line-height:0;        /* remove inline img gap */
 }
-
-/* On hover, slightly brighten it */
-.navbar-brand:hover .logo {
-  filter: brightness(1.1) saturate(110%);
+.logo-img{
+  height:100%;          /* scale to wrapper height */
+  width:auto;
+  display:block;
+  object-fit:contain;
 }
-
-/* For smaller screens, scale down automatically */
-@media (max-width: 768px) {
-  .logo {
-    height: 36px;
-  }
+@media (max-width:768px){
+  .logo-wrap{ height:38px; }
 }
-
