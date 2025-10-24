@@ -255,21 +255,21 @@ h6,
 }
 
 .logo-wrap {
-  height: 30px;
+  height: 64px;               /* matches real logo height + slight buffer */
   width: auto;
-  overflow: hidden;
   line-height: 0;
   display: flex;
   align-items: center;
-}
-.logo-img {
-  height: 110%;
-  width: auto;
-  display: block;
-  object-fit: contain;
-  transform: translateY(-4%);
-}
-@media (max-width: 768px) {
-  .logo-wrap { height: 28px; }
+  overflow: visible;          /* prevents clipping */
 }
 
+.logo-img {
+  height: 100%;               /* exact fit to navbar height */
+  width: auto;
+  object-fit: contain;
+  transform: translateY(2px); /* fine-tune vertical alignment */
+}
+
+@media (max-width: 768px) {
+  .logo-wrap { height: 44px; }  /* scale proportionally for mobile */
+}
