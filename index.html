@@ -200,13 +200,71 @@ draw();
 
 
 
-  <!-- CTA -->
-  <section class="container-fluid bg-primary text-white text-center py-6">
-    <h2 class="display-5 mb-3">Your Transformation Starts with Strategic Clarity</h2>
-    <p class="mb-4">Let’s align your vision, your markets, and your message.</p>
-    <a href="#contact" class="btn btn-light rounded-pill px-4 py-2">Contact VelocityCraft</a>
-  </section>
+ <!-- CTA -->
+<section class="container-fluid text-center text-white py-6 position-relative"
+  style="background:linear-gradient(135deg,#1d4ed8 0%,#0f172a 100%); overflow:hidden;">
+  
+  <!-- subtle animated dots -->
+  <canvas id="ctaCanvas" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; opacity:0.2;"></canvas>
 
+  <div class="position-relative" style="z-index:2;">
+    <h2 class="display-5 fw-bold mb-3">Your Transformation Starts with Strategic Clarity</h2>
+    <p class="lead mb-4" style="opacity:0.9;">Let’s align your vision, your markets, and your message.</p>
+    <a href="#contact" 
+       class="btn rounded-pill px-5 py-3 fw-semibold"
+       style="background-color:#00b7ff; color:#fff; border:none;">
+       Contact VelocityCraft
+    </a>
+  </div>
+</section>
+
+<script>
+// small ambient dots animation, matching hero style
+const ctaCanvas = document.getElementById('ctaCanvas');
+const ctaCtx = ctaCanvas.getContext('2d');
+let cw, ch, dots = [];
+
+function resizeCTA() {
+  cw = ctaCanvas.width = window.innerWidth;
+  ch = ctaCanvas.height = ctaCanvas.offsetHeight;
+}
+window.addEventListener('resize', resizeCTA);
+resizeCTA();
+
+function initDots() {
+  dots = [];
+  for (let i = 0; i < 60; i++) {
+    dots.push({
+      x: Math.random() * cw,
+      y: Math.random() * ch,
+      r: Math.random() * 2 + 1,
+      dx: (Math.random() - 0.5) * 0.3,
+      dy: (Math.random() - 0.5) * 0.3,
+      color: Math.random() > 0.5 ? '#00b7ff' : '#1d4ed8'
+    });
+  }
+}
+
+function drawDots() {
+  ctaCtx.clearRect(0, 0, cw, ch);
+  dots.forEach(p => {
+    ctaCtx.beginPath();
+    ctaCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctaCtx.fillStyle = p.color;
+    ctaCtx.fill();
+    p.x += p.dx;
+    p.y += p.dy;
+    if (p.x < 0 || p.x > cw) p.dx *= -1;
+    if (p.y < 0 || p.y > ch) p.dy *= -1;
+  });
+  requestAnimationFrame(drawDots);
+}
+
+initDots();
+drawDots();
+</script>
+
+  
   <!-- Contact -->
   <section id="contact" class="container-fluid bg-light py-6 px-4">
     <div class="text-center mb-5">
