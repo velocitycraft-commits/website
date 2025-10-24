@@ -251,4 +251,26 @@ h6,
 
 .blog-item:hover img {
     transform: scale(1.1);
+
 }
+
+.logo {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(10%) sepia(95%) saturate(500%) hue-rotate(210deg);
+  transition: all 0.2s ease-in-out;
+}
+
+/* On hover, slightly brighten it */
+.navbar-brand:hover .logo {
+  filter: brightness(1.1) saturate(110%);
+}
+
+/* For smaller screens, scale down automatically */
+@media (max-width: 768px) {
+  .logo {
+    height: 36px;
+  }
+}
+
