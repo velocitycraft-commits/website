@@ -271,32 +271,32 @@ drawDots();
 
   
   <!-- Contact -->
-  <section id="contact" class="container-fluid bg-light py-6 px-4">
-    <div class="text-center mb-5">
-      <h2 class="display-6 fw-bold text-dark">Get in Touch</h2>
-      <p class="text-secondary">We partner with companies ready to move from complexity to clarity.</p>
-      <hr class="w-25 mx-auto bg-primary">
-    </div>
-    <div class="row justify-content-center">
-      <div class="col-lg-6">
-        <form>
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="name" placeholder="Your Name">
-            <label for="name">Full Name</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="email" placeholder="name@example.com">
-            <label for="email">Email Address</label>
-          </div>
-          <div class="form-floating mb-3">
-            <textarea class="form-control" id="message" style="height:120px;" placeholder="Message"></textarea>
-            <label for="message">Message</label>
-          </div>
-          <button type="submit" class="btn btn-primary w-100 py-3">Send Message</button>
-        </form>
-      </div>
-    </div>
-  </section>
+ <form action="https://formsubmit.co/info@velocitycraft.com" method="POST">
+  <!-- Hidden config fields -->
+  <input type="hidden" name="_subject" value="New message from VelocityCraft website">
+  <input type="hidden" name="_next" value="https://velocitycraft.com/thankyou.html">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_template" value="table">
+
+  <!-- Visible input fields -->
+  <div class="form-floating mb-3">
+    <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required>
+    <label for="name">Full Name</label>
+  </div>
+
+  <div class="form-floating mb-3">
+    <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+    <label for="email">Email Address</label>
+  </div>
+
+  <div class="form-floating mb-3">
+    <textarea class="form-control" id="message" name="message" style="height:120px;" placeholder="Message" required></textarea>
+    <label for="message">Message</label>
+  </div>
+
+  <button type="submit" class="btn btn-primary w-100 py-3">Send Message</button>
+</form>
+
 
   <!-- Footer -->
   <footer class="container-fluid bg-dark text-secondary text-center py-4">
