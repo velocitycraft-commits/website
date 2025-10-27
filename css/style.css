@@ -445,6 +445,22 @@ h6,
   }
 }
 
+.hero-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 650px;
+  margin: 0 auto 1.5rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .hero-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 1.2rem;
+  }
+}
+
+
 
 
 
