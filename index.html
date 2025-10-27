@@ -375,47 +375,76 @@
 
 <!-- ================= HERO SCRIPT ================= -->
 <script>
-  /* Animated Particle Background (lightweight) */
-  const heroCanvas = document.getElementById('heroCanvas');
-  const ctx = heroCanvas.getContext('2d');
-  let particles = [], w, h;
+/* Starfield with subtle constellation lines */
+const heroCanvas = document.getElementById('heroCanvas');
+const ctx = heroCanvas.getContext('2d');
+let stars = [], w, h;
 
-  const resize = () => {
-    w = heroCanvas.width = window.innerWidth;
-    h = heroCanvas.height = window.innerHeight;
-  };
-  window.addEventListener('resize', resize);
-  resize();
+function resize() {
+  w = heroCanvas.width = window.innerWidth;
+  h = heroCanvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
 
-  const init = () => {
-    particles = Array.from({length: 100}, () => ({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      r: Math.random() * 2 + 1,
-      dx: (Math.random() - 0.5) * 0.3,
-      dy: (Math.random() - 0.5) * 0.3,
-      c: Math.random() > 0.5 ? '#1d4ed8' : '#00b7ff'
-    }));
-  };
+function initStars() {
+  const colors = ['#ffffff', '#a5b4fc', '#93c5fd', '#00b7ff'];
+  stars = Array.from({ length: 120 }, () => ({
+    x: Math.random() * w,
+    y: Math.random() * h,
+    r: Math.random() * 1.6 + 0.4,
+    dx: (Math.random() - 0.5) * 0.25,
+    dy: (Math.random() - 0.5) * 0.25,
+    color: colors[Math.floor(Math.random() * colors.length)],
+    twinkle: Math.random()
+  }));
+}
 
-  const draw = () => {
-    ctx.clearRect(0, 0, w, h);
-    for (const p of particles) {
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = p.c;
-      ctx.fill();
-      p.x += p.dx;
-      p.y += p.dy;
-      if (p.x < 0 || p.x > w) p.dx *= -1;
-      if (p.y < 0 || p.y > h) p.dy *= -1;
+function draw() {
+  ctx.clearRect(0, 0, w, h);
+
+  // Draw constellation lines
+  for (let i = 0; i < stars.length; i++) {
+    for (let j = i + 1; j < stars.length; j++) {
+      const dx = stars[i].x - stars[j].x;
+      const dy = stars[i].y - stars[j].y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 120) {
+        const alpha = 1 - dist / 120;
+        ctx.strokeStyle = `rgba(165,180,252,${alpha * 0.25})`;
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(stars[i].x, stars[i].y);
+        ctx.lineTo(stars[j].x, stars[j].y);
+        ctx.stroke();
+      }
     }
-    requestAnimationFrame(draw);
-  };
+  }
 
-  init();
-  draw();
+  // Draw stars with twinkling
+  for (const s of stars) {
+    s.twinkle += 0.02;
+    const brightness = 0.5 + 0.5 * Math.sin(s.twinkle);
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,255,255,${brightness})`;
+    ctx.shadowColor = 'rgba(255,255,255,0.5)';
+    ctx.shadowBlur = 6 * brightness;
+    ctx.fill();
+
+    s.x += s.dx;
+    s.y += s.dy;
+    if (s.x < 0 || s.x > w) s.dx *= -1;
+    if (s.y < 0 || s.y > h) s.dy *= -1;
+  }
+
+  requestAnimationFrame(draw);
+}
+
+initStars();
+draw();
 </script>
+
 
   
 
