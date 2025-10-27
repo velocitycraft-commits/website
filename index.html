@@ -11,7 +11,7 @@
   <meta name="color-scheme" content="light dark">
 
   <!-- Favicon & App Icons -->
-  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.ico">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 
   <!-- SEO & Social Sharing -->
@@ -113,342 +113,845 @@
   
 
 <body>
-  <!-- Topbar -->
-  <div class="container-fluid bg-dark text-light py-2 px-4 d-none d-lg-block">
-    <div class="d-flex justify-content-between">
-<small>
-  <i class="fa fa-envelope me-2"></i>
-  <a href="mailto:info@velocitycraft.com" class="text-light text-decoration-none">info@velocitycraft.com</a>
-</small>
-      
-      <!-- <small><i class="fa fa-phone-alt me-2"></i>+1 (555) 123-4567</small> -->
-    </div>
-  </div>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light shadow-sm px-4 py-2" style="background:#fff;">
+  <!-- ================= TOPBAR ================= -->
+<div class="container-fluid d-none d-lg-block py-2 px-4 topbar text-light">
+  <div class="d-flex justify-content-between align-items-center">
+    <small class="d-flex align-items-center gap-2">
+      <i class="fa fa-envelope text-primary"></i>
+      <a href="mailto:info@velocitycraft.com" class="text-light text-decoration-none hover-bright">
+        info@velocitycraft.com
+      </a>
+    </small>
+    <!-- Optional phone or socials could go here -->
+  </div>
+</div>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar navbar-expand-lg sticky-top px-4 py-2 modern-nav">
   <a href="index.html" class="navbar-brand d-flex align-items-center logo-wrap">
     <img src="img/VelocityCraft Logo.png" alt="VelocityCraft" class="logo-img">
   </a>
 
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
+    data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarCollapse">
-    <div class="navbar-nav ms-auto">
-      <a href="#home" class="nav-item nav-link active">Home</a>
-      <a href="#about" class="nav-item nav-link">About</a>
-      <a href="#services" class="nav-item nav-link">Services</a>
-      <a href="#contact" class="nav-item nav-link">Contact</a>
+    <div class="navbar-nav ms-auto align-items-center">
+      <a href="#home" class="nav-item nav-link nav-hover active">Home</a>
+      <a href="#about" class="nav-item nav-link nav-hover">About</a>
+      <a href="#services" class="nav-item nav-link nav-hover">Services</a>
+      <a href="#contact" class="nav-item nav-link nav-hover">Contact</a>
     </div>
   </div>
 </nav>
+
+<!-- ================= STYLES ================= -->
+<style>
+  /* --- Topbar --- */
+  .topbar {
+    background: rgba(15, 23, 42, 0.95);
+    font-size: 0.9rem;
+    letter-spacing: 0.3px;
+  }
+  .hover-bright:hover {
+    color: var(--accent) !important;
+    transition: color 0.3s ease;
+  }
+
+  /* --- Navbar Styling --- */
+  .modern-nav {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  }
+
+  /* Navbar hover and active effects */
+  .nav-hover {
+    color: var(--dark);
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+  .nav-hover::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--primary);
+    transition: width 0.3s ease;
+  }
+  .nav-hover:hover {
+    color: var(--primary);
+  }
+  .nav-hover:hover::after {
+    width: 100%;
+  }
+  .nav-link.active {
+    color: var(--primary) !important;
+    font-weight: 600;
+  }
+
+  /* --- Logo animation on hover --- */
+  .logo-img {
+    height: 50px;
+    transition: transform 0.4s ease, filter 0.3s ease;
+  }
+  .logo-img:hover {
+    transform: scale(1.06);
+    filter: brightness(1.1);
+  }
+
+  /* --- Navbar shrink on scroll --- */
+  .navbar.scrolled {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  }
+
+  /* --- Dark mode variant --- */
+  @media (prefers-color-scheme: dark) {
+    .modern-nav {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(10px);
+    }
+    .nav-hover { color: #e2e8f0; }
+    .nav-hover::after { background: var(--accent); }
+  }
+</style>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+  // Add scroll detection for subtle navbar shrinking
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('.navbar');
+    if (window.scrollY > 50) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+</script>
+
 
 
 
 
   <!-- Hero -->
-<section id="home" class="position-relative d-flex align-items-center justify-content-center" 
-  style="height:100vh; overflow:hidden; background:radial-gradient(circle at 20% 30%, #1d4ed8 0%, #1a1a1a 100%); color:#ffffff;">
-  
-  <canvas id="heroCanvas" style="position:absolute; top:0; left:0; width:100%; height:100%;"></canvas>
-  
-  <div class="position-relative text-center px-3" style="z-index:2;">
-    
-    <!-- Refined tagline -->
-    <div style="
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      gap:1.5rem;
-      font-weight:600;
-      text-transform:uppercase;
-      letter-spacing:2px;
-      color:#a5b4fc;
-      font-size:0.95rem;
-      opacity:0.9;
-      text-shadow:0 0 6px rgba(255,255,255,0.15);
-      margin-bottom:1rem;
-    ">
+
+  <!-- ================= HERO SECTION ================= -->
+<section id="home" class="hero-section d-flex align-items-center justify-content-center text-center position-relative">
+  <!-- Animated background canvas -->
+  <canvas id="heroCanvas"></canvas>
+
+  <!-- Hero Content -->
+  <div class="hero-content px-4" data-aos="fade-up" data-aos-delay="200">
+    <div class="hero-tagline">
       <span>Advisory</span>
-      <span style="color:#3b82f6;">|</span>
+      <span class="divider">|</span>
       <span>Transformation</span>
-      <span style="color:#3b82f6;">|</span>
+      <span class="divider">|</span>
       <span>Communications</span>
     </div>
 
-    <!-- Main headline -->
-    <h1 class="display-3 fw-bold mb-4" style="color:#ffffff; text-shadow:0 0 20px rgba(0,0,0,0.4);">
-      Strategic Clarity. Market Momentum.
-    </h1>
+    <h1 class="hero-title">Strategic Clarity.<br>Market Momentum.</h1>
 
-    <!-- CTA button -->
-    <a href="#contact" 
-       class="btn py-3 px-5 rounded-pill fw-semibold shadow-lg"
-       style="background-color:#1d4ed8; color:#ffffff; border:none; transition:all .3s ease;">
-       Start Your Transformation
+    <a href="#contact" class="btn hero-btn rounded-pill px-5 py-3 fw-semibold mt-3">
+      Start Your Transformation
     </a>
   </div>
 </section>
 
+<!-- ================= HERO STYLES ================= -->
+<style>
+  /* --- Layout & Background --- */
+  .hero-section {
+    height: 100vh;
+    overflow: hidden;
+    background: radial-gradient(circle at 20% 30%, var(--primary) 0%, var(--dark) 100%);
+    color: #fff;
+    position: relative;
+  }
+
+  /* --- Animated particle layer --- */
+  #heroCanvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 1;
+  }
+
+  /* --- Content wrapper --- */
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+  }
+
+  /* --- Tagline --- */
+  .hero-tagline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.4rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.95rem;
+    color: #a5b4fc;
+    text-shadow: 0 0 8px rgba(255,255,255,0.1);
+    margin-bottom: 1.5rem;
+    opacity: 0.95;
+  }
+  .hero-tagline .divider {
+    color: var(--accent);
+  }
+
+  /* --- Main Title --- */
+  .hero-title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 0 30px rgba(0,0,0,0.5);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  /* --- CTA Button --- */
+  .hero-btn {
+    background: linear-gradient(135deg, var(--accent), var(--primary));
+    color: #fff;
+    border: none;
+    box-shadow: 0 8px 25px rgba(0,183,255,0.25);
+    transition: all 0.4s ease;
+  }
+  .hero-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 12px 30px rgba(0,183,255,0.35);
+    filter: brightness(1.15);
+  }
+
+  /* --- Mobile optimization --- */
+  @media (max-width: 768px) {
+    .hero-tagline { font-size: 0.8rem; gap: 1rem; }
+    .hero-title { font-size: 2.2rem; }
+    .hero-btn { padding: 0.75rem 2.5rem; font-size: 0.95rem; }
+  }
+</style>
+
+<!-- ================= HERO SCRIPT ================= -->
 <script>
-const canvas = document.getElementById('heroCanvas');
-const ctx = canvas.getContext('2d');
-let w, h, particles = [];
+  /* Animated Particle Background (lightweight) */
+  const heroCanvas = document.getElementById('heroCanvas');
+  const ctx = heroCanvas.getContext('2d');
+  let particles = [], w, h;
 
-function resize() {
-  w = canvas.width = window.innerWidth;
-  h = canvas.height = window.innerHeight;
-}
-window.addEventListener('resize', resize);
-resize();
+  const resize = () => {
+    w = heroCanvas.width = window.innerWidth;
+    h = heroCanvas.height = window.innerHeight;
+  };
+  window.addEventListener('resize', resize);
+  resize();
 
-function initParticles() {
-  particles = [];
-  for (let i = 0; i < 120; i++) {
-    particles.push({
+  const init = () => {
+    particles = Array.from({length: 100}, () => ({
       x: Math.random() * w,
       y: Math.random() * h,
       r: Math.random() * 2 + 1,
-      dx: (Math.random() - 0.5) * 0.5,
-      dy: (Math.random() - 0.5) * 0.5,
-      color: Math.random() > 0.5 ? '#1d4ed8' : '#00b7ff'
-    });
-  }
-}
+      dx: (Math.random() - 0.5) * 0.3,
+      dy: (Math.random() - 0.5) * 0.3,
+      c: Math.random() > 0.5 ? '#1d4ed8' : '#00b7ff'
+    }));
+  };
 
-function draw() {
-  ctx.clearRect(0, 0, w, h);
-  for (let p of particles) {
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-    ctx.fillStyle = p.color;
-    ctx.fill();
-    p.x += p.dx;
-    p.y += p.dy;
-    if (p.x < 0 || p.x > w) p.dx *= -1;
-    if (p.y < 0 || p.y > h) p.dy *= -1;
-  }
-  requestAnimationFrame(draw);
-}
+  const draw = () => {
+    ctx.clearRect(0, 0, w, h);
+    for (const p of particles) {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.c;
+      ctx.fill();
+      p.x += p.dx;
+      p.y += p.dy;
+      if (p.x < 0 || p.x > w) p.dx *= -1;
+      if (p.y < 0 || p.y > h) p.dy *= -1;
+    }
+    requestAnimationFrame(draw);
+  };
 
-initParticles();
-draw();
+  init();
+  draw();
 </script>
 
   
 
- <!-- About -->
-<section id="about" class="container-fluid py-6 px-4 bg-white" style="color:#1a1a1a;">
-  <div class="row g-5 align-items-start">
-    <div class="col-lg-10 col-xl-8">
-      <h1 class="display-5 fw-bold mb-3">Welcome to <span style="color:#1d4ed8;">VelocityCraft</span></h1>
-      <p class="lead mb-3">
-        We help leadership teams navigate strategic transformations and turn strategy into market momentum.
+<!-- ================= ABOUT SECTION ================= -->
+<section id="about" class="about-section container-fluid py-6 px-4 bg-white text-dark">
+  <div class="row g-5 align-items-start justify-content-center">
+    <div class="col-lg-10 col-xl-8" data-aos="fade-up" data-aos-delay="150">
+
+      <!-- Headline -->
+      <h1 class="display-5 fw-bold mb-4">
+        Welcome to <span class="brand-gradient">VelocityCraft</span>
+      </h1>
+
+      <!-- Intro paragraph -->
+      <p class="lead mb-4 text-secondary fw-normal">
+        We help leadership teams navigate <strong>strategic transformations</strong> and turn strategy into measurable <strong>market momentum</strong>.
       </p>
-      <ul class="mb-4" style="line-height:1.7;">
-        <li><strong>Strategic alignment:</strong> clarify priorities, milestones, and metrics.</li>
-        <li><strong>Financial storytelling:</strong> translate performance into investor-ready narratives.</li>
-        <li><strong>Stakeholder communications:</strong> consistent messaging across executives, boards, partners, and press.</li>
+
+      <!-- Core value bullets -->
+      <ul class="about-list mb-4">
+        <li><strong>Strategic Alignment:</strong> Clarify priorities, milestones, and metrics.</li>
+        <li><strong>Financial Storytelling:</strong> Translate performance into investor-ready narratives.</li>
+        <li><strong>Stakeholder Communications:</strong> Ensure consistent messaging across executives, boards, and markets.</li>
       </ul>
-      <p class="mb-4 text-secondary">
+
+      <!-- Disclaimer + CTA -->
+      <p class="text-muted small mb-4">
         VelocityCraft collaborates with financial advisors but is <strong>not</strong> a registered investment advisor.
       </p>
-      <a href="#services" class="btn btn-primary rounded-pill px-4 py-2">Explore Services</a>
+
+      <a href="#services" class="btn about-btn rounded-pill px-5 py-3 fw-semibold">
+        Explore Services
+      </a>
     </div>
   </div>
 </section>
 
+<!-- ================= ABOUT STYLES ================= -->
+<style>
+  .about-section {
+    background: #fff;
+    color: var(--dark);
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+
+  /* Gradient text for brand name */
+  .brand-gradient {
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Bullet styling */
+  .about-list {
+    list-style: none;
+    padding-left: 0;
+    line-height: 1.8;
+  }
+  .about-list li {
+    position: relative;
+    padding-left: 1.8rem;
+    margin-bottom: 0.8rem;
+  }
+  .about-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0.1rem;
+    color: var(--primary);
+    font-weight: 700;
+  }
+
+  /* Button styling */
+  .about-btn {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: #fff;
+    border: none;
+    box-shadow: 0 6px 18px rgba(29, 78, 216, 0.25);
+    transition: all 0.35s ease;
+  }
+  .about-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 24px rgba(0,183,255,0.35);
+    filter: brightness(1.15);
+  }
+
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .about-section {
+      background: var(--dark);
+      color: #e2e8f0;
+    }
+    .text-muted { color: #94a3b8 !important; }
+    .about-list li::before { color: var(--accent); }
+  }
+</style>
 
 
-<!-- Services -->
-<section id="services" class="container-fluid py-6 px-4" style="background-color:#1d4ed8; color:#ffffff;">
-  <div class="text-center mb-5">
-    <h2 class="display-6 fw-bold text-white">What We Do</h2>
-    <p class="opacity-90">Advisory for organizations at pivotal moments of change and growth.</p>
-    <hr class="w-25 mx-auto" style="border:2px solid rgba(255,255,255,0.35);">
+
+
+<!-- ================= SERVICES SECTION ================= -->
+<section id="services" class="services-section container-fluid py-6 px-4 text-white">
+  <div class="text-center mb-5" data-aos="fade-up">
+    <h2 class="display-6 fw-bold mb-2">What We Do</h2>
+    <p class="opacity-90 mb-3">Advisory for organizations at pivotal moments of change and growth.</p>
+    <hr class="w-25 mx-auto section-divider">
   </div>
 
-  <div class="row g-4">
-    <div class="col-md-4">
-      <div class="h-100 p-4 text-center rounded shadow-sm"
-           style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15);">
-        <div class="rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3"
-             style="width:80px; height:80px; background:rgba(255,255,255,0.18);">
-          <i class="fa fa-chart-line fa-2x text-white"></i>
+  <div class="row g-4 justify-content-center">
+    <!-- Service Card 1 -->
+    <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+      <div class="service-card text-center p-5 h-100 rounded-4">
+        <div class="service-icon mb-4">
+          <i class="fa fa-chart-line fa-2x"></i>
         </div>
-        <h4 class="fw-bold text-white mb-2">Strategic Transformation</h4>
-        <p class="mb-0 opacity-90">Operating model, digital, and org design to unlock durable value.</p>
+        <h4 class="fw-bold mb-3">Strategic Transformation</h4>
+        <p class="opacity-90">
+          Operating model, digital, and organizational design to unlock durable value.
+        </p>
       </div>
     </div>
 
-    <div class="col-md-4">
-      <div class="h-100 p-4 text-center rounded shadow-sm"
-           style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15);">
-        <div class="rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3"
-             style="width:80px; height:80px; background:rgba(255,255,255,0.18);">
-          <i class="fa fa-bullhorn fa-2x text-white"></i>
+    <!-- Service Card 2 -->
+    <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+      <div class="service-card text-center p-5 h-100 rounded-4">
+        <div class="service-icon mb-4">
+          <i class="fa fa-bullhorn fa-2x"></i>
         </div>
-        <h4 class="fw-bold text-white mb-2">Investor & Market Communications</h4>
-        <p class="mb-0 opacity-90">Narratives, decks, and disclosures that build stakeholder confidence.</p>
+        <h4 class="fw-bold mb-3">Investor & Market Communications</h4>
+        <p class="opacity-90">
+          Narratives, decks, and disclosures that build stakeholder confidence.
+        </p>
       </div>
     </div>
 
-    <div class="col-md-4">
-      <div class="h-100 p-4 text-center rounded shadow-sm"
-           style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15);">
-        <div class="rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3"
-             style="width:80px; height:80px; background:rgba(255,255,255,0.18);">
-          <i class="fa fa-handshake fa-2x text-white"></i>
+    <!-- Service Card 3 -->
+    <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+      <div class="service-card text-center p-5 h-100 rounded-4">
+        <div class="service-icon mb-4">
+          <i class="fa fa-handshake fa-2x"></i>
         </div>
-        <h4 class="fw-bold text-white mb-2">Advisory & Partnerships</h4>
-        <p class="mb-0 opacity-90">Board alignment and strategic alliances that accelerate outcomes.</p>
+        <h4 class="fw-bold mb-3">Advisory & Partnerships</h4>
+        <p class="opacity-90">
+          Board alignment and strategic alliances that accelerate outcomes.
+        </p>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ================= SERVICES STYLES ================= -->
+<style>
+  .services-section {
+    background: linear-gradient(135deg, var(--primary) 0%, #0f172a 100%);
+    color: #fff;
+  }
 
+  .section-divider {
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    opacity: 0.8;
+  }
 
- <!-- CTA -->
-<section class="container-fluid text-center text-white py-6 position-relative"
-  style="background:linear-gradient(135deg,#1d4ed8 0%,#0f172a 100%); overflow:hidden;">
+  /* --- Card Container --- */
+  .service-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.4s ease;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    backdrop-filter: blur(4px);
+  }
+
+  .service-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* --- Icons --- */
+  .service-icon {
+    width: 90px;
+    height: 90px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    transition: all 0.4s ease;
+  }
+
+  .service-card:hover .service-icon {
+    background: linear-gradient(135deg, #00b7ff, #1d4ed8);
+    box-shadow: 0 0 25px rgba(0, 183, 255, 0.5);
+    transform: scale(1.1);
+  }
+
+  /* --- Dark mode --- */
+  @media (prefers-color-scheme: dark) {
+    .services-section {
+      background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%);
+    }
+  }
+</style>
+
   
-  <!-- subtle animated dots -->
-  <canvas id="ctaCanvas" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; opacity:0.2;"></canvas>
+<!-- ================= CTA SECTION ================= -->
+<section id="cta" class="cta-section container-fluid text-center text-white position-relative">
+  <!-- Animated background -->
+  <canvas id="ctaCanvas"></canvas>
 
-  <div class="position-relative" style="z-index:2;">
-    <h2 class="display-5 fw-bold mb-3" style="color:#ffffff;">
-  Your Transformation Starts with Strategic Clarity
-</h2>
-    <p class="lead mb-4" style="opacity:0.9;">Let’s align your vision, your markets, and your message.</p>
-    <a href="#contact" 
-       class="btn rounded-pill px-5 py-3 fw-semibold"
-       style="background-color:#00b7ff; color:#fff; border:none;">
-       Contact VelocityCraft
+  <div class="cta-content position-relative" data-aos="zoom-in" data-aos-delay="150">
+    <h2 class="display-5 fw-bold mb-3">
+      Your Transformation Starts with Strategic Clarity
+    </h2>
+    <p class="lead mb-4 opacity-90">
+      Let’s align your vision, your markets, and your message.
+    </p>
+    <a href="#contact" class="btn cta-btn rounded-pill px-5 py-3 fw-semibold">
+      Contact VelocityCraft
     </a>
   </div>
 </section>
 
+<!-- ================= CTA STYLES ================= -->
+<style>
+  .cta-section {
+    background: linear-gradient(135deg, var(--primary) 0%, #0f172a 100%);
+    overflow: hidden;
+    padding: 6rem 1rem;
+    position: relative;
+  }
+
+  /* background canvas */
+  #ctaCanvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    opacity: 0.25;
+    z-index: 1;
+  }
+
+  /* content */
+  .cta-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* typography */
+  .cta-content h2 {
+    color: #fff;
+    text-shadow: 0 0 18px rgba(0, 0, 0, 0.35);
+  }
+  .cta-content p {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  /* button */
+  .cta-btn {
+    background: linear-gradient(135deg, #00b7ff, var(--primary));
+    border: none;
+    color: #fff;
+    box-shadow: 0 8px 25px rgba(0, 183, 255, 0.35);
+    transition: all 0.4s ease;
+  }
+  .cta-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 35px rgba(0, 183, 255, 0.45);
+    filter: brightness(1.15);
+  }
+
+  @media (max-width: 768px) {
+    .cta-content h2 { font-size: 1.9rem; }
+    .cta-btn { padding: 0.75rem 2.5rem; font-size: 0.95rem; }
+  }
+</style>
+
+<!-- ================= CTA SCRIPT ================= -->
 <script>
-// small ambient dots animation, matching hero style
-const ctaCanvas = document.getElementById('ctaCanvas');
-const ctaCtx = ctaCanvas.getContext('2d');
-let cw, ch, dots = [];
+  /* Subtle particle motion (same engine as hero) */
+  const ctaCanvas = document.getElementById('ctaCanvas');
+  const ctx = ctaCanvas.getContext('2d');
+  let dots = [], w, h;
 
-function resizeCTA() {
-  cw = ctaCanvas.width = window.innerWidth;
-  ch = ctaCanvas.height = ctaCanvas.offsetHeight;
-}
-window.addEventListener('resize', resizeCTA);
-resizeCTA();
+  const resizeCTA = () => {
+    w = ctaCanvas.width = window.innerWidth;
+    h = ctaCanvas.height = ctaCanvas.offsetHeight;
+  };
+  window.addEventListener('resize', resizeCTA);
+  resizeCTA();
 
-function initDots() {
-  dots = [];
-  for (let i = 0; i < 60; i++) {
-    dots.push({
-      x: Math.random() * cw,
-      y: Math.random() * ch,
+  const initDots = () => {
+    dots = Array.from({ length: 70 }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
       r: Math.random() * 2 + 1,
       dx: (Math.random() - 0.5) * 0.3,
       dy: (Math.random() - 0.5) * 0.3,
-      color: Math.random() > 0.5 ? '#00b7ff' : '#1d4ed8'
-    });
-  }
-}
+      c: Math.random() > 0.5 ? '#00b7ff' : '#1d4ed8'
+    }));
+  };
 
-function drawDots() {
-  ctaCtx.clearRect(0, 0, cw, ch);
-  dots.forEach(p => {
-    ctaCtx.beginPath();
-    ctaCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-    ctaCtx.fillStyle = p.color;
-    ctaCtx.fill();
-    p.x += p.dx;
-    p.y += p.dy;
-    if (p.x < 0 || p.x > cw) p.dx *= -1;
-    if (p.y < 0 || p.y > ch) p.dy *= -1;
-  });
-  requestAnimationFrame(drawDots);
-}
+  const drawDots = () => {
+    ctx.clearRect(0, 0, w, h);
+    for (const p of dots) {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.c;
+      ctx.fill();
+      p.x += p.dx;
+      p.y += p.dy;
+      if (p.x < 0 || p.x > w) p.dx *= -1;
+      if (p.y < 0 || p.y > h) p.dy *= -1;
+    }
+    requestAnimationFrame(drawDots);
+  };
 
-initDots();
-drawDots();
+  initDots();
+  drawDots();
 </script>
 
-  
-  <!-- Contact -->
- <section id="contact" class="py-6" style="background:#f8fafc;">
-  <div class="container" style="max-width:700px;">
-    <div class="text-center mb-5">
-      <h2 class="display-6 fw-bold text-dark mb-3">Get in Touch</h2>
+
+
+  <!-- ================= CONTACT SECTION ================= -->
+<section id="contact" class="contact-section py-6">
+  <div class="container" style="max-width:720px;">
+    
+    <!-- Section Header -->
+    <div class="text-center mb-5" data-aos="fade-up">
+      <h2 class="display-6 fw-bold mb-3 text-dark">Get in Touch</h2>
       <p class="text-secondary mb-0">
         We partner with organizations ready to move from complexity to clarity.
       </p>
-      <hr class="w-25 mx-auto mt-4" style="border:2px solid #1d4ed8;">
+      <hr class="contact-divider mx-auto mt-4">
     </div>
 
-    <form action="https://formsubmit.co/info@velocitycraft.com" method="POST"
-      class="bg-white p-5 rounded-4 shadow-lg mx-auto"
-      style="border:1px solid #e2e8f0;">
+    <!-- Contact Form -->
+    <form action="https://formsubmit.co/info@velocitycraft.com" method="POST" 
+          class="contact-form bg-white p-5 rounded-4 shadow-lg mx-auto" 
+          data-aos="fade-up" data-aos-delay="150">
 
-      <!-- Hidden fields -->
+      <!-- Hidden fields (FormSubmit config) -->
       <input type="hidden" name="_subject" value="New message from VelocityCraft website">
       <input type="hidden" name="_next" value="https://velocitycraft.com/thankyou.html">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_template" value="table">
 
-      <!-- Full Name -->
+      <!-- Name -->
       <div class="form-group mb-4">
         <label for="name" class="fw-semibold text-dark mb-2">Full Name</label>
-        <input type="text" class="form-control rounded-pill px-4 py-3 border-0 shadow-sm"
-               id="name" name="name" placeholder="Enter your full name" required
-               style="background:#f1f5f9;">
+        <input type="text" id="name" name="name"
+               class="form-control contact-input"
+               placeholder="Enter your full name" required>
       </div>
 
       <!-- Email -->
       <div class="form-group mb-4">
         <label for="email" class="fw-semibold text-dark mb-2">Email Address</label>
-        <input type="email" class="form-control rounded-pill px-4 py-3 border-0 shadow-sm"
-               id="email" name="email" placeholder="you@company.com" required
-               style="background:#f1f5f9;">
+        <input type="email" id="email" name="email"
+               class="form-control contact-input"
+               placeholder="you@company.com" required>
       </div>
 
       <!-- Message -->
       <div class="form-group mb-4">
         <label for="message" class="fw-semibold text-dark mb-2">Message</label>
-        <textarea class="form-control rounded-4 px-4 py-3 border-0 shadow-sm"
-                  id="message" name="message" rows="5" placeholder="Write your message..." required
-                  style="background:#f1f5f9;"></textarea>
+        <textarea id="message" name="message" rows="5"
+                  class="form-control contact-textarea"
+                  placeholder="Write your message..." required></textarea>
       </div>
 
-      <!-- Button -->
-      <button type="submit"
-        class="btn w-100 py-3 rounded-pill fw-bold shadow-sm"
-        style="background:#1d4ed8; color:#fff; border:none; transition:all .3s ease;">
+      <!-- Submit -->
+      <button type="submit" class="btn contact-btn w-100 py-3 rounded-pill fw-bold">
         Send Message
       </button>
     </form>
   </div>
 </section>
 
+<!-- ================= CONTACT STYLES ================= -->
+<style>
+  .contact-section {
+    background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+
+  .contact-divider {
+    width: 80px;
+    border: 2px solid var(--primary);
+    opacity: 0.8;
+  }
+
+  /* Input fields */
+  .contact-input, .contact-textarea {
+    background: #f1f5f9;
+    border: none;
+    border-radius: 50px;
+    padding: 1rem 1.5rem;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+  }
+
+  .contact-textarea {
+    border-radius: 20px;
+    resize: none;
+  }
+
+  /* Focus animation */
+  .contact-input:focus, .contact-textarea:focus {
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(29,78,216,0.25);
+    outline: none;
+  }
+
+  /* Button styling */
+  .contact-btn {
+    background: linear-gradient(135deg, var(--primary), #00b7ff);
+    border: none;
+    color: #fff;
+    box-shadow: 0 8px 25px rgba(0, 183, 255, 0.35);
+    transition: all 0.4s ease;
+  }
+  .contact-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 12px 30px rgba(0, 183, 255, 0.45);
+  }
+
+  /* Mobile optimization */
+  @media (max-width: 768px) {
+    .contact-form { padding: 2.5rem; }
+    .contact-btn { font-size: 0.95rem; }
+  }
+
+  /* Dark mode */
+  @media (prefers-color-scheme: dark) {
+    .contact-section {
+      background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+    }
+    .contact-form { background: #1e293b; color: #e2e8f0; }
+    .contact-input, .contact-textarea {
+      background: #334155; color: #e2e8f0;
+    }
+    .contact-input:focus, .contact-textarea:focus {
+      box-shadow: 0 0 0 3px rgba(0,183,255,0.3);
+    }
+  }
+</style>
+
+  
+ 
+<!-- ================= FOOTER ================= -->
+<footer class="footer-section text-center text-light position-relative">
+  <div class="container py-5">
+    <!-- Decorative gradient bar -->
+    <div class="footer-gradient-bar mx-auto mb-4"></div>
+
+    <!-- Branding -->
+    <p class="mb-2 small opacity-90">
+      &copy; 2025 <a href="#" class="footer-link">VelocityCraft</a>. All Rights Reserved.
+    </p>
+    <p class="mb-3 small opacity-75">
+      Advisory services for strategy, transformation, and communications.<br>
+      VelocityCraft is not a registered investment advisor.
+    </p>
+
+    <!-- Credits -->
+    <p class="small opacity-50">
+      Design framework adapted from <a href="https://htmlcodex.com" class="footer-link">HTML Codex</a>
+    </p>
+  </div>
+
+  <!-- Back to Top Button -->
+  <a href="#top" class="back-to-top-btn" aria-label="Back to top">
+    <i class="bi bi-arrow-up"></i>
+  </a>
+</footer>
+
+<!-- ================= FOOTER STYLES ================= -->
+<style>
+  .footer-section {
+    background: linear-gradient(180deg, #0f172a 0%, #020617 100%);
+    color: #e2e8f0;
+    position: relative;
+  }
+
+  .footer-gradient-bar {
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), #00b7ff);
+    border-radius: 3px;
+  }
+
+  .footer-link {
+    color: #93c5fd;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid transparent;
+  }
+  .footer-link:hover {
+    color: #fff;
+    border-bottom: 1px solid #00b7ff;
+  }
+
+  /* Back to top button */
+  .back-to-top-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--primary), #00b7ff);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0, 183, 255, 0.35);
+    transition: all 0.4s ease;
+    opacity: 0.9;
+    z-index: 50;
+  }
+  .back-to-top-btn:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 183, 255, 0.5);
+    opacity: 1;
+  }
+
+  /* Fade in/out behavior (requires JS below) */
+  .back-to-top-btn.hide {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+  }
+
+  @media (max-width: 768px) {
+    .footer-section .container { padding: 3rem 1.5rem; }
+    .back-to-top-btn { width: 42px; height: 42px; }
+  }
+</style>
+
+<!-- ================= FOOTER SCRIPT ================= -->
+<script>
+  // Back to top visibility logic
+  const backToTopBtn = document.querySelector('.back-to-top-btn');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) backToTopBtn.classList.remove('hide');
+    else backToTopBtn.classList.add('hide');
+  });
+
+  // Smooth scroll to top
+  backToTopBtn.addEventListener('click', e => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
+<!-- ================= CORE JS LIBRARIES ================= -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="js/main.js"></script>
 
 
 
-  <!-- Footer -->
-  <footer class="container-fluid bg-dark text-secondary text-center py-4">
-    <p class="m-0">&copy; 2025 <a class="text-secondary border-bottom" href="#">VelocityCraft</a>. All Rights Reserved. Designed by <a class="text-secondary border-bottom" href="https://htmlcodex.com">HTML Codex</a>.</p>
-    <small>Advisory services for strategy, transformation and communications. VelocityCraft is not a registered investment advisor.</small>
-  </footer>
 
-  <!-- Back to Top -->
-  <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
-
-  <!-- JS -->
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-  <script src="js/main.js"></script>
 </body>
 </html>
