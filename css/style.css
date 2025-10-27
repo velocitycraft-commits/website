@@ -467,6 +467,12 @@ h6,
   border: 0;
 }
 
+.hero-btn,
+.service-card,
+.logo-img {
+  will-change: transform;
+}
+
 
 
 
