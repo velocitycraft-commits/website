@@ -1,37 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
+  
 <head>
+  <!-- Metadata & Basic Config -->
   <meta charset="utf-8">
-  <title>VelocityCraft | Strategic Clarity. Market Momentum.</title>
-  <link rel="icon" type="image/png" href="img/favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VelocityCraft | Strategic Clarity. Market Momentum.</title>
   <meta name="description" content="VelocityCraft helps companies navigate strategic transformations, strengthen market visibility, and communicate effectively with investors and stakeholders.">
-  <link href="img/favicon.ico" rel="icon">
+  <meta name="theme-color" content="#1d4ed8">
+  <meta name="color-scheme" content="light dark">
+
+  <!-- Favicon & App Icons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+  <!-- SEO & Social Sharing -->
+  <meta property="og:title" content="VelocityCraft | Strategic Clarity. Market Momentum.">
+  <meta property="og:description" content="Advisory for organizations at pivotal moments of change and growth.">
+  <meta property="og:image" content="https://velocitycraft.com/img/social-preview.png">
+  <meta property="og:url" content="https://velocitycraft.com">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Preconnects for Performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Fonts & Icons -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
   <!-- Libraries -->
   <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
 
+  <!-- Global Style Upgrades -->
   <style>
     :root {
-      --primary:#1d4ed8;
-      --dark:#1a1a1a;
-      --light:#f5f6f7;
+      --primary: #1d4ed8;
+      --accent: #00b7ff;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --text: #1a1a1a;
     }
-    .bg-primary{background-color:var(--primary)!important;}
-    .bg-dark{background-color:var(--dark)!important;}
-    .text-primary{color:var(--primary)!important;}
-    .btn-primary{background-color:var(--primary);border-color:var(--primary);}
-    .btn-primary:hover{background-color:#1539a3;border-color:#1539a3;}
+
+    /* Typography & Base Colors */
+    body {
+      font-family: 'Inter', 'Open Sans', sans-serif;
+      color: var(--text);
+      background: var(--light);
+      opacity: 0;
+      transition: opacity .6s ease;
+    }
+    body.loaded { opacity: 1; }
+
+    /* Button Enhancements */
+    .btn, button {
+      transition: all 0.3s ease;
+      transform: translateY(0);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .btn:hover, button:hover {
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 8px 18px rgba(29,78,216,0.3);
+      filter: brightness(1.1);
+    }
+    .btn:active, button:active {
+      transform: translateY(0) scale(0.98);
+      box-shadow: 0 4px 8px rgba(29,78,216,0.25);
+    }
+
+    /* Animated gradient backgrounds for key sections */
+    .gradient-bg {
+      background: linear-gradient(120deg, var(--primary), var(--accent), #1e293b);
+      background-size: 400% 400%;
+      animation: gradientShift 12s ease infinite;
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Smooth dark mode support */
+    @media (prefers-color-scheme: dark) {
+      body { background: var(--dark); color: #e2e8f0; }
+      .navbar { background: rgba(15,23,42,0.8) !important; backdrop-filter: blur(8px); }
+      .btn-primary { background-color: var(--accent); border: none; }
+      a { color: var(--accent); }
+    }
+
+    /* Scrollbar styling (modern browsers) */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 8px; }
+
   </style>
+
+  <!-- Page Load Animation Script -->
+  <script>
+    window.addEventListener('load', () => document.body.classList.add('loaded'));
+  </script>
+
+  <!-- AOS (Animate on Scroll) -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>document.addEventListener('DOMContentLoaded', () => AOS.init({ duration: 800, easing: 'ease-out-quad', once: true }));</script>
 </head>
+
+  
+  
 
 <body>
   <!-- Topbar -->
