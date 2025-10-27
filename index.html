@@ -797,45 +797,70 @@ VelocityCraft is a strategic advisory firm that helps public companies and growt
     </div>
 
     <!-- Contact Form -->
-    <form action="https://formsubmit.co/info@velocitycraft.com" method="POST" 
-          class="contact-form bg-white p-5 rounded-4 shadow-lg mx-auto" 
-          data-aos="fade-up" data-aos-delay="150">
+    <form id="contact-form" class="contact-form bg-white p-5 rounded-4 shadow-lg mx-auto" data-aos="fade-up" data-aos-delay="150">
+  <!-- Hidden config -->
+  <input type="hidden" name="_subject" value="New message from VelocityCraft website">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_template" value="table">
 
-      <!-- Hidden fields (FormSubmit config) -->
-      <input type="hidden" name="_subject" value="New message from VelocityCraft website">
-      <input type="hidden" name="_next" value="https://velocitycraft.com/thankyou.html">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_template" value="table">
+  <!-- Name -->
+  <div class="form-group mb-4">
+    <label for="name" class="fw-semibold text-dark mb-2">Full Name</label>
+    <input type="text" id="name" name="name"
+           class="form-control contact-input"
+           placeholder="Enter your full name" required>
+  </div>
 
-      <!-- Name -->
-      <div class="form-group mb-4">
-        <label for="name" class="fw-semibold text-dark mb-2">Full Name</label>
-        <input type="text" id="name" name="name"
-               class="form-control contact-input"
-               placeholder="Enter your full name" required>
-      </div>
+  <!-- Email -->
+  <div class="form-group mb-4">
+    <label for="email" class="fw-semibold text-dark mb-2">Email Address</label>
+    <input type="email" id="email" name="email"
+           class="form-control contact-input"
+           placeholder="you@company.com" required>
+  </div>
 
-      <!-- Email -->
-      <div class="form-group mb-4">
-        <label for="email" class="fw-semibold text-dark mb-2">Email Address</label>
-        <input type="email" id="email" name="email"
-               class="form-control contact-input"
-               placeholder="you@company.com" required>
-      </div>
+  <!-- Message -->
+  <div class="form-group mb-4">
+    <label for="message" class="fw-semibold text-dark mb-2">Message</label>
+    <textarea id="message" name="message" rows="5"
+              class="form-control contact-textarea"
+              placeholder="Write your message..." required></textarea>
+  </div>
 
-      <!-- Message -->
-      <div class="form-group mb-4">
-        <label for="message" class="fw-semibold text-dark mb-2">Message</label>
-        <textarea id="message" name="message" rows="5"
-                  class="form-control contact-textarea"
-                  placeholder="Write your message..." required></textarea>
-      </div>
+  <!-- Submit -->
+  <button type="submit" class="btn contact-btn w-100 py-3 rounded-pill fw-bold">
+    Send Message
+  </button>
+</form>
 
-      <!-- Submit -->
-      <button type="submit" class="btn contact-btn w-100 py-3 rounded-pill fw-bold">
-        Send Message
-      </button>
-    </form>
+<!-- Inline success message -->
+<p id="success-message" style="display:none; text-align:center; color:#1d4ed8; font-weight:600; margin-top:1rem;">
+  Thank you — your message has been sent.
+</p>
+
+<!-- Add this script directly after -->
+<script>
+  const form = document.getElementById('contact-form');
+  const successMsg = document.getElementById('success-message');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    fetch("https://formsubmit.co/info@velocitycraft.com", {
+      method: "POST",
+      body: new FormData(form)
+    })
+    .then(res => {
+      if (res.ok) {
+        form.style.display = 'none';
+        successMsg.style.display = 'block';
+      } else {
+        alert("Error sending message. Please try again later.");
+      }
+    })
+    .catch(() => alert("Network error. Please try again."));
+  });
+</script>
+
   </div>
 </section>
 
