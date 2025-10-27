@@ -341,3 +341,15 @@ h6,
   box-shadow: 0 4px 8px rgba(29,78,216,0.25);
 }
 
+/* === Fix white hover text for all gradient buttons === */
+.btn:hover,
+.hero-btn:hover,
+.about-btn:hover,
+.cta-btn:hover,
+.contact-btn:hover {
+  color: #fff !important;     /* force white text */
+  font-weight: 700;
+  filter: none !important;    /* stop the gray tint */
+}
+
+
