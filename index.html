@@ -169,11 +169,20 @@
       AOS.init({
         duration: 800,
         easing: 'ease-out-quad',
-        once: true
+        once: true,
+        throttleDelay: 200
+      });
+
+      // Throttle AOS refresh on resize
+      let aosTimeout;
+      window.addEventListener('resize', () => {
+        clearTimeout(aosTimeout);
+        aosTimeout = setTimeout(() => AOS.refresh(), 300);
       });
     });
   });
 </script>
+
 
 
 
