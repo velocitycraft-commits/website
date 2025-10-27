@@ -320,3 +320,24 @@ h6,
   color: #1d4ed8 !important;
   font-weight: 600;
 }
+
+/* Global button hover enhancement */
+.btn, button {
+  transition: all 0.3s ease;
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* On hover — subtle scale and brightness */
+.btn:hover, button:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 18px rgba(29,78,216,0.3);
+  filter: brightness(1.1);
+}
+
+/* On active click — gentle press down */
+.btn:active, button:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 4px 8px rgba(29,78,216,0.25);
+}
+
