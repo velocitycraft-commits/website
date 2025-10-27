@@ -802,7 +802,7 @@ Work with VelocityCraft to turn strategic intent into measurable performance.   
 <script>
   /* Subtle particle motion (same engine as hero) */
   const ctaCanvas = document.getElementById('ctaCanvas');
-  const ctx = ctaCanvas.getContext('2d');
+  const ctaCtx = ctaCanvas.getContext('2d'); // renamed from ctx → ctaCtx
   let dots = [], w, h;
 
   const resizeCTA = () => {
@@ -824,12 +824,12 @@ Work with VelocityCraft to turn strategic intent into measurable performance.   
   };
 
   const drawDots = () => {
-    ctx.clearRect(0, 0, w, h);
+    ctaCtx.clearRect(0, 0, w, h);
     for (const p of dots) {
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = p.c;
-      ctx.fill();
+      ctaCtx.beginPath();
+      ctaCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctaCtx.fillStyle = p.c;
+      ctaCtx.fill();
       p.x += p.dx;
       p.y += p.dy;
       if (p.x < 0 || p.x > w) p.dx *= -1;
@@ -841,6 +841,7 @@ Work with VelocityCraft to turn strategic intent into measurable performance.   
   initDots();
   drawDots();
 </script>
+
 
 
 
