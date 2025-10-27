@@ -842,22 +842,22 @@ Work with VelocityCraft to turn strategic intent into measurable performance.   
 
 <!-- ================= CTA SCRIPT ================= -->
 <script>
-  /* Subtle particle motion (same engine as hero) */
+  /* Subtle particle motion (isolated from hero canvas variables) */
   const ctaCanvas = document.getElementById('ctaCanvas');
-  const ctaCtx = ctaCanvas.getContext('2d'); // renamed from ctx → ctaCtx
-  let dots = [], w, h;
+  const ctaCtx = ctaCanvas.getContext('2d');
+  let ctaDots = [], ctaW, ctaH;
 
   const resizeCTA = () => {
-    w = ctaCanvas.width = window.innerWidth;
-    h = ctaCanvas.height = ctaCanvas.offsetHeight;
+    ctaW = ctaCanvas.width = window.innerWidth;
+    ctaH = ctaCanvas.height = ctaCanvas.offsetHeight;
   };
   window.addEventListener('resize', resizeCTA);
   resizeCTA();
 
-  const initDots = () => {
-    dots = Array.from({ length: 70 }, () => ({
-      x: Math.random() * w,
-      y: Math.random() * h,
+  const initCTADots = () => {
+    ctaDots = Array.from({ length: 70 }, () => ({
+      x: Math.random() * ctaW,
+      y: Math.random() * ctaH,
       r: Math.random() * 2 + 1,
       dx: (Math.random() - 0.5) * 0.3,
       dy: (Math.random() - 0.5) * 0.3,
@@ -865,24 +865,25 @@ Work with VelocityCraft to turn strategic intent into measurable performance.   
     }));
   };
 
-  const drawDots = () => {
-    ctaCtx.clearRect(0, 0, w, h);
-    for (const p of dots) {
+  const drawCTADots = () => {
+    ctaCtx.clearRect(0, 0, ctaW, ctaH);
+    for (const p of ctaDots) {
       ctaCtx.beginPath();
       ctaCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
       ctaCtx.fillStyle = p.c;
       ctaCtx.fill();
       p.x += p.dx;
       p.y += p.dy;
-      if (p.x < 0 || p.x > w) p.dx *= -1;
-      if (p.y < 0 || p.y > h) p.dy *= -1;
+      if (p.x < 0 || p.x > ctaW) p.dx *= -1;
+      if (p.y < 0 || p.y > ctaH) p.dy *= -1;
     }
-    requestAnimationFrame(drawDots);
+    requestAnimationFrame(drawCTADots);
   };
 
-  initDots();
-  drawDots();
+  initCTADots();
+  drawCTADots();
 </script>
+
 
 
 
