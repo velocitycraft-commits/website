@@ -273,3 +273,50 @@ h6,
 @media (max-width: 768px) {
   .logo-wrap { height: 44px; }  /* scale proportionally for mobile */
 }
+
+/* Logo subtle hover effect */
+.logo-img {
+  height: 42px;
+  width: auto;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+.logo-img:hover {
+  transform: scale(1.07);
+  filter: brightness(1.1);
+}
+
+/* Navigation link hover styles */
+.navbar-nav .nav-link {
+  color: #1a1a1a !important;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+/* Animated underline on hover */
+.navbar-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0;
+  height: 2px;
+  background-color: #1d4ed8;
+  transition: width 0.3s ease;
+}
+
+/* Hover state */
+.navbar-nav .nav-link:hover {
+  color: #1d4ed8 !important;
+}
+.navbar-nav .nav-link:hover::after {
+  width: 100%;
+}
+
+/* Optional active link style */
+.navbar-nav .nav-link.active {
+  color: #1d4ed8 !important;
+  font-weight: 600;
+}
