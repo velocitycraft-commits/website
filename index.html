@@ -320,19 +320,28 @@
     margin-bottom: 1.5rem;
   }
 
-  /* --- CTA Button --- */
-  .hero-btn {
-    background: linear-gradient(135deg, var(--accent), var(--primary));
-    color: #fff;
-    border: none;
-    box-shadow: 0 8px 25px rgba(0,183,255,0.25);
-    transition: all 0.4s ease;
-  }
-  .hero-btn:hover {
-    transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 12px 30px rgba(0,183,255,0.35);
-    filter: brightness(1.15);
-  }
+/* --- CTA Button (Refined Glow Behavior) --- */
+.hero-btn {
+  background: linear-gradient(135deg, var(--accent), var(--primary));
+  color: #fff;
+  border: none;
+  box-shadow: none; /* no glow until interaction */
+  transition: all 0.4s ease;
+  transform: translateY(0);
+}
+
+/* glow only when hovered or cursor approaches */
+.hero-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 35px rgba(0,183,255,0.45);
+  filter: brightness(1.15);
+}
+
+/* optional: subtle ambient glow when cursor is near (modern browsers only) */
+.hero-section:has(.hero-btn:hover) .hero-btn {
+  box-shadow: 0 6px 18px rgba(0,183,255,0.25);
+}
+
 
   /* --- Mobile optimization --- */
   @media (max-width: 768px) {
