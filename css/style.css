@@ -436,6 +436,16 @@ h6,
   .navbar-collapse .nav-link { display:block; padding:.75rem 0; font-size:1.1rem; }
 }
 
+@media (max-width: 991px) {
+  .navbar-collapse {
+    text-align: right;
+  }
+  .navbar-nav {
+    align-items: flex-end;
+  }
+}
+
+
 
 
 
