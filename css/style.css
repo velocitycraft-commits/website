@@ -363,5 +363,50 @@ h6,
   height: 1.5em;
 }
 
+/* === Mobile Navbar Alignment & Slide-in Effect === */
+@media (max-width: 991.98px) {
+  /* Right-align menu items */
+  .navbar-collapse {
+    justify-content: flex-end !important;
+    text-align: right;
+    align-items: flex-end;
+    background: rgba(255, 255, 255, 0.95); /* optional: gives a soft background */
+    backdrop-filter: blur(12px);
+    padding: 1rem 1.5rem;
+    border-radius: 12px 0 0 12px;
+    transform: translateX(100%);
+    transition: transform 0.35s ease;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 70%; /* adjust width of slide-in panel */
+    box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+    z-index: 1050;
+  }
+
+  /* When expanded */
+  .navbar-collapse.show {
+    transform: translateX(0);
+  }
+
+  /* Style the nav links inside */
+  .navbar-nav .nav-link {
+    display: block;
+    padding: 0.75rem 0;
+    font-size: 1.1rem;
+    color: #0f172a !important;
+  }
+  .navbar-nav .nav-link:hover {
+    color: var(--primary) !important;
+  }
+
+  /* Optional close button spacing fix */
+  .navbar-toggler {
+    z-index: 1100;
+  }
+}
+
+
 
 
