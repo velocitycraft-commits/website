@@ -375,24 +375,24 @@
 
 <!-- ================= HERO SCRIPT ================= -->
 <script>
-/* Dynamic starfield with ephemeral constellation lines */
-const heroCanvas = document.getElementById('heroCanvas');
-const ctx = heroCanvas.getContext('2d');
+/* Dynamic moving starfield with temporary constellation lines */
+const heroCanvas = document.getElementById("heroCanvas");
+const ctx = heroCanvas.getContext("2d");
 let stars = [], w, h;
 
 function resize() {
   w = heroCanvas.width = window.innerWidth;
   h = heroCanvas.height = window.innerHeight;
 }
-window.addEventListener('resize', resize);
+window.addEventListener("resize", resize);
 resize();
 
 function initStars() {
-  const colors = ['#ffffff', '#a5b4fc', '#93c5fd', '#00b7ff'];
+  const colors = ["#ffffff", "#a5b4fc", "#93c5fd", "#00b7ff"];
   stars = Array.from({ length: 120 }, () => ({
     x: Math.random() * w,
     y: Math.random() * h,
-    r: Math.random() * 1.6 + 0.4,
+    r: Math.random() * 1.5 + 0.3,
     dx: (Math.random() - 0.5) * 0.25,
     dy: (Math.random() - 0.5) * 0.25,
     color: colors[Math.floor(Math.random() * colors.length)],
@@ -401,19 +401,16 @@ function initStars() {
 }
 
 function draw() {
-  // fade the entire canvas slightly each frame to create a smooth trailing motion
-  ctx.fillStyle = 'rgba(15, 23, 42, 0.25)'; // background fade color (dark blue)
-  ctx.fillRect(0, 0, w, h);
+  ctx.clearRect(0, 0, w, h);
 
-  // Dynamic constellation lines
+  // draw constellation lines dynamically
   for (let i = 0; i < stars.length; i++) {
     for (let j = i + 1; j < stars.length; j++) {
       const dx = stars[i].x - stars[j].x;
       const dy = stars[i].y - stars[j].y;
       const dist = Math.sqrt(dx * dx + dy * dy);
-
       if (dist < 120) {
-        const alpha = 1 - dist / 120; // closer stars => stronger opacity
+        const alpha = 1 - dist / 120;
         ctx.strokeStyle = `rgba(165,180,252,${alpha * 0.4})`;
         ctx.lineWidth = 0.5;
         ctx.beginPath();
@@ -424,23 +421,22 @@ function draw() {
     }
   }
 
-  // Draw moving, twinkling stars
+  // draw moving twinkling stars
   for (const s of stars) {
     s.twinkle += 0.03;
-    const brightness = 0.5 + 0.5 * Math.sin(s.twinkle);
-
+    const brightness = 0.6 + 0.4 * Math.sin(s.twinkle);
     ctx.beginPath();
     ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
     ctx.fillStyle = `rgba(255,255,255,${brightness})`;
-    ctx.shadowColor = 'rgba(255,255,255,0.7)';
-    ctx.shadowBlur = 8 * brightness;
+    ctx.shadowColor = "rgba(255,255,255,0.7)";
+    ctx.shadowBlur = 6;
     ctx.fill();
 
-    // update motion
+    // update position
     s.x += s.dx;
     s.y += s.dy;
 
-    // bounce at edges
+    // bounce off edges
     if (s.x < 0 || s.x > w) s.dx *= -1;
     if (s.y < 0 || s.y > h) s.dy *= -1;
   }
@@ -451,6 +447,7 @@ function draw() {
 initStars();
 draw();
 </script>
+
 
 
 
