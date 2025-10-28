@@ -37,30 +37,27 @@
   </noscript>
 
   <!-- Inline critical CSS -->
-  <style>
-    body {font-family:'Inter',sans-serif;color:#1a1a1a;background:#f8fafc;}
-    h1,h2{color:#0f172a;}
-    section{max-width:800px;margin:4rem auto;padding:0 1rem;}
-    .terms-section h2{font-size:1.4rem;margin-top:2rem;}
-    .terms-section p,li{line-height:1.7;color:#334155;}
-    @media(prefers-color-scheme:dark){
-      body{background:#0f172a;color:#e2e8f0;}
-      h1,h2{color:#fff;}
-    }
-  </style>
-
-  <style>
+ <style>
+.navbar.modern-nav {
+  background: rgba(255,255,255,0.95) !important;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+}
 .navbar .nav-link,
 .navbar .nav-hover {
-  color: var(--dark) !important;
+  color: #1a1a1a !important;
   font-weight: 500;
 }
 .navbar .nav-link:hover,
 .navbar .nav-link.active,
 .navbar .nav-hover:hover {
-  color: var(--primary) !important;
+  color: #1d4ed8 !important;
+}
+.navbar-toggler-icon {
+  filter: invert(1);
 }
 </style>
+
 
   
 </head>
