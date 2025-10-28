@@ -449,7 +449,7 @@ button:active {
 .services-section {
   color: #fff;
   background: linear-gradient(rgba(13,33,80,0.75), rgba(13,33,80,0.85)),
-              url("img/stockmarket.avif?ver=1") center/cover no-repeat;
+              url("img/stockmarket.avif") center/cover no-repeat;
   background-attachment: fixed;
   overflow: hidden;
   padding: 6rem 1rem;
@@ -767,4 +767,5 @@ body {
 [data-aos] {
   transform: translateZ(0);
 }
+
 
