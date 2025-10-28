@@ -438,7 +438,6 @@ Optimize structure, process, and execution to scale efficiently.        </p>
 <!-- ================= CTA SECTION ================= -->
 <section id="cta" class="cta-section container-fluid text-center text-white position-relative">
   <!-- Animated background -->
-  <canvas id="ctaCanvas"></canvas>
 
   <div class="cta-content position-relative" data-aos="zoom-in" data-aos-delay="150">
     <h2 class="display-5 fw-bold mb-3">
@@ -451,53 +450,6 @@ Work with VelocityCraft to turn strategic intent into measurable performance.   
     </a>
   </div>
 </section>
-
-
-
-<!-- ================= CTA SCRIPT ================= -->
-<script>
-  /* Subtle particle motion (isolated from hero canvas variables) */
-  const ctaCanvas = document.getElementById('ctaCanvas');
-  const ctaCtx = ctaCanvas.getContext('2d');
-  let ctaDots = [], ctaW, ctaH;
-
-  const resizeCTA = () => {
-    ctaW = ctaCanvas.width = window.innerWidth;
-    ctaH = ctaCanvas.height = ctaCanvas.offsetHeight;
-  };
-  window.addEventListener('resize', resizeCTA);
-  resizeCTA();
-
-  const initCTADots = () => {
-    ctaDots = Array.from({ length: 70 }, () => ({
-      x: Math.random() * ctaW,
-      y: Math.random() * ctaH,
-      r: Math.random() * 2 + 1,
-      dx: (Math.random() - 0.5) * 0.3,
-      dy: (Math.random() - 0.5) * 0.3,
-      c: Math.random() > 0.5 ? '#00b7ff' : '#1d4ed8'
-    }));
-  };
-
-  const drawCTADots = () => {
-    ctaCtx.clearRect(0, 0, ctaW, ctaH);
-    for (const p of ctaDots) {
-      ctaCtx.beginPath();
-      ctaCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctaCtx.fillStyle = p.c;
-      ctaCtx.fill();
-      p.x += p.dx;
-      p.y += p.dy;
-      if (p.x < 0 || p.x > ctaW) p.dx *= -1;
-      if (p.y < 0 || p.y > ctaH) p.dy *= -1;
-    }
-    requestAnimationFrame(drawCTADots);
-  };
-
-  initCTADots();
-  drawCTADots();
-</script>
-
 
 
 
