@@ -1,11 +1,9 @@
 /**********************************************************
  * VELOCITYCRAFT MAIN STYLESHEET
- * Cleaned + commented for maintainability
- * --------------------------------------------------------
  * Structure:
  * 1. Root Variables & Typography
  * 2. Global Base
- * 3. Navbar / Logo
+ * 3. Topbar / Navbar / Logo
  * 4. Buttons & Shimmer Effect
  * 5. Hero Section
  * 6. About Section
@@ -20,20 +18,23 @@
    1. ROOT VARIABLES & TYPOGRAPHY
 ======================================================== */
 :root {
-  --primary: #1d4ed8;   /* Deep blue core */
-  --accent: #00b7ff;    /* Cyan accent for gradients */
-  --dark: #0f172a;      /* Dark navy */
-  --light: #f8fafc;     /* Background base */
-  --text: #1a1a1a;      /* Default text color */
+  --primary: #1d4ed8;
+  --accent: #00b7ff;
+  --dark: #0f172a;
+  --light: #f8fafc;
+  --text: #1a1a1a;
 }
 
-/* Font weights reused */
 h1, h2, .fw-bold { font-weight: 700 !important; }
 h3, h4, .fw-semibold { font-weight: 600 !important; }
 
 /* ========================================================
    2. GLOBAL BASE
 ======================================================== */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Inter', 'Open Sans', sans-serif;
   color: var(--text);
@@ -43,8 +44,23 @@ body {
 }
 body.loaded { opacity: 1; }
 
-/* Smooth scroll and consistent scrollbar */
-html { scroll-behavior: smooth; }
+/* Gentle hue rotation for background dynamism */
+body.loaded {
+  animation: hueShift 30s linear infinite;
+}
+@keyframes hueShift {
+  0%,100% { filter: hue-rotate(0deg); }
+  50% { filter: hue-rotate(4deg); }
+}
+
+/* Dark mode base */
+@media (prefers-color-scheme: dark) {
+  body { background: var(--dark); color: #e2e8f0; }
+  .btn-primary { background-color: var(--accent); border: none; }
+  a { color: var(--accent); }
+}
+
+/* Scrollbar */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 8px; }
 ::-webkit-scrollbar-track { background: transparent; }
@@ -54,11 +70,34 @@ html { scroll-behavior: smooth; }
 .pb-6 { padding-bottom: 90px; }
 .py-6 { padding-top: 90px; padding-bottom: 90px; }
 
+/* Animated gradient background helper */
+.gradient-bg {
+  background: linear-gradient(120deg, var(--primary), var(--accent), #1e293b);
+  background-size: 400% 400%;
+  animation: gradientShift 12s ease infinite;
+}
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 /* ========================================================
-   3. NAVBAR / LOGO
+   3. TOPBAR / NAVBAR / LOGO
 ======================================================== */
 
-/* Logo container alignment */
+/* Top bar */
+.topbar {
+  background: rgba(15, 23, 42, 0.95);
+  font-size: 0.9rem;
+  letter-spacing: 0.3px;
+}
+.hover-bright:hover {
+  color: var(--accent) !important;
+  transition: color 0.3s ease;
+}
+
+/* Logo wrap */
 .logo-wrap {
   height: 64px;
   display: flex;
@@ -76,7 +115,7 @@ html { scroll-behavior: smooth; }
   filter: brightness(1.1);
 }
 
-/* Modern navbar appearance */
+/* Navbar base */
 .modern-nav {
   background: rgba(255,255,255,0.8);
   backdrop-filter: blur(12px);
@@ -84,7 +123,7 @@ html { scroll-behavior: smooth; }
   transition: all 0.3s ease;
 }
 
-/* Shrink effect on scroll (script-controlled) */
+/* Navbar shrink on scroll */
 .navbar.scrolled {
   padding-top: 0.5rem !important;
   padding-bottom: 0.5rem !important;
@@ -92,7 +131,7 @@ html { scroll-behavior: smooth; }
   box-shadow: 0 2px 12px rgba(0,0,0,0.1);
 }
 
-/* Navigation links */
+/* Nav links */
 .nav-hover {
   color: var(--dark);
   font-weight: 500;
@@ -104,8 +143,10 @@ html { scroll-behavior: smooth; }
 .nav-hover::after {
   content: '';
   position: absolute;
-  bottom: -3px; left: 0;
-  width: 0%; height: 2px;
+  bottom: -3px;
+  left: 0;
+  width: 0%;
+  height: 2px;
   background: var(--primary);
   transition: width 0.3s ease;
 }
@@ -120,11 +161,23 @@ html { scroll-behavior: smooth; }
   font-weight: 600;
 }
 
-/* Mobile slide-in panel */
+/* Dark mode navbar treatment */
+@media (prefers-color-scheme: dark) {
+  .modern-nav {
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(10px);
+  }
+  .navbar { background: rgba(15,23,42,0.8) !important; backdrop-filter: blur(8px); }
+  .nav-hover { color: #e2e8f0; }
+  .nav-hover::after { background: var(--accent); }
+}
+
+/* Mobile slide-in nav panel */
 @media (max-width: 991.98px) {
   .navbar-collapse {
     position: fixed;
-    top: 0; right: 0;
+    top: 0;
+    right: 0;
     height: 100vh;
     width: 70%;
     padding: 1rem 1.5rem;
@@ -156,7 +209,8 @@ html { scroll-behavior: smooth; }
    4. BUTTONS & SHIMMER EFFECT
 ======================================================== */
 
-.btn, button {
+.btn,
+button {
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   transition: all 0.3s ease;
@@ -166,26 +220,30 @@ html { scroll-behavior: smooth; }
   overflow: hidden;
 }
 
-/* Hover: lift and brighten */
-.btn:hover, button:hover {
+/* Hover lift */
+.btn:hover,
+button:hover {
   transform: translateY(-2px) scale(1.04);
   box-shadow: 0 8px 18px rgba(29,78,216,0.3);
   filter: brightness(1.1);
   color: #fff !important;
 }
 
-/* Active: press down */
-.btn:active, button:active {
+/* Active press */
+.btn:active,
+button:active {
   transform: translateY(0) scale(0.98);
   box-shadow: 0 4px 8px rgba(29,78,216,0.25);
 }
 
-/* Subtle shimmer animation */
+/* Shimmer */
 .btn::after {
   content: "";
   position: absolute;
-  top: 0; left: -80%;
-  width: 40%; height: 100%;
+  top: 0;
+  left: -80%;
+  width: 40%;
+  height: 100%;
   background: linear-gradient(120deg, transparent, rgba(255,255,255,0.15), transparent);
   transform: skewX(-20deg);
   opacity: 0.4;
@@ -209,8 +267,10 @@ html { scroll-behavior: smooth; }
 }
 #heroCanvas {
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   z-index: 1;
 }
 .hero-content {
@@ -221,7 +281,7 @@ html { scroll-behavior: smooth; }
   text-align: center;
 }
 
-/* Hero tagline */
+/* Tagline row */
 .hero-tagline {
   display: flex;
   justify-content: center;
@@ -231,12 +291,13 @@ html { scroll-behavior: smooth; }
   letter-spacing: 2px;
   font-size: 0.95rem;
   color: #a5b4fc;
+  text-shadow: 0 0 8px rgba(255,255,255,0.1);
   margin-bottom: 1.5rem;
   opacity: 0.95;
 }
 .hero-tagline .divider { color: var(--accent); }
 
-/* Hero title */
+/* Title */
 .hero-title {
   font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 700;
@@ -246,16 +307,17 @@ html { scroll-behavior: smooth; }
   margin-bottom: 1.5rem;
 }
 
-/* Hero subtitle */
+/* Subtitle */
 .hero-subtitle {
   font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.9);
   max-width: 650px;
   margin: 0 auto 1.5rem;
   line-height: 1.6;
+  font-family: 'Inter', sans-serif;
 }
 
-/* Hero button */
+/* CTA button with proximity glow */
 .hero-btn {
   background: linear-gradient(135deg, var(--accent), var(--primary));
   color: #fff;
@@ -263,12 +325,60 @@ html { scroll-behavior: smooth; }
   border-radius: 50px;
   padding: 1rem 2rem;
   transition: all 0.4s ease;
+  position: relative;
+  box-shadow: none;
+  transform: translateY(0);
+  z-index: 1;
+  font-family: 'Inter', sans-serif;
 }
-.hero-btn:hover {
+
+/* invisible hover zone */
+.hero-btn::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  right: -50px;
+  bottom: -50px;
+  border-radius: 50px;
+  background: transparent;
+  z-index: 0;
+}
+
+/* glow on hover or near */
+.hero-btn:hover,
+.hero-btn::before:hover,
+.hero-btn:has(:hover) {
   box-shadow: 0 0 35px rgba(0,183,255,0.55);
   filter: brightness(1.15);
   transform: translateY(-3px) scale(1.05);
   color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+/* nearby glow effect */
+.hero-section:has(.hero-btn:hover) .hero-btn {
+  box-shadow: 0 0 25px rgba(0,183,255,0.25);
+}
+
+@media (max-width: 768px) {
+  .hero-tagline { font-size: 0.8rem; gap: 1rem; }
+  .hero-title { font-size: 2.2rem; }
+  .hero-btn { padding: 0.75rem 2.5rem; font-size: 0.95rem; }
+}
+@media (max-width: 600px) {
+  .hero-tagline {
+    flex-wrap: wrap;
+    font-size: 0.75rem;
+    gap: 0.6rem;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  .hero-tagline span {
+    display: inline-block;
+  }
 }
 
 /* ========================================================
@@ -280,6 +390,7 @@ html { scroll-behavior: smooth; }
   padding-top: 6rem;
   padding-bottom: 6rem;
 }
+
 .brand-gradient {
   background: linear-gradient(90deg, var(--primary), var(--accent));
   -webkit-background-clip: text;
@@ -300,12 +411,13 @@ html { scroll-behavior: smooth; }
 .about-list li::before {
   content: "✓";
   position: absolute;
-  left: 0; top: 0.1rem;
+  left: 0;
+  top: 0.1rem;
   color: var(--primary);
   font-weight: 700;
 }
 
-/* About button */
+/* CTA button */
 .about-btn {
   background: linear-gradient(135deg, var(--primary), var(--accent));
   color: #fff;
@@ -321,6 +433,16 @@ html { scroll-behavior: smooth; }
   filter: brightness(1.15);
 }
 
+/* Dark mode variant */
+@media (prefers-color-scheme: dark) {
+  .about-section {
+    background: var(--dark);
+    color: #e2e8f0;
+  }
+  .text-muted { color: #94a3b8 !important; }
+  .about-list li::before { color: var(--accent); }
+}
+
 /* ========================================================
    7. SERVICES SECTION
 ======================================================== */
@@ -331,9 +453,16 @@ html { scroll-behavior: smooth; }
   background-attachment: fixed;
   overflow: hidden;
   padding: 6rem 1rem;
+  position: relative;
 }
 
-/* Service cards */
+/* Divider line under heading */
+.section-divider {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  opacity: 0.8;
+}
+
+/* Card */
 .service-card {
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.15);
@@ -350,10 +479,13 @@ html { scroll-behavior: smooth; }
 
 /* Icon glow */
 .service-icon {
-  width: 90px; height: 90px;
+  width: 90px;
+  height: 90px;
   background: rgba(255,255,255,0.15);
   border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0 auto 1rem;
   transition: all 0.4s ease;
 }
@@ -361,6 +493,13 @@ html { scroll-behavior: smooth; }
   background: linear-gradient(135deg, var(--accent), var(--primary));
   box-shadow: 0 0 25px rgba(0,183,255,0.5);
   transform: scale(1.1);
+}
+
+/* Parallax behavior only if motion not reduced */
+@media (prefers-reduced-motion: no-preference) {
+  .services-section {
+    background-attachment: fixed;
+  }
 }
 
 /* ========================================================
@@ -376,8 +515,10 @@ html { scroll-behavior: smooth; }
 }
 #ctaCanvas {
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   opacity: 0.25;
   z-index: 1;
 }
@@ -387,6 +528,15 @@ html { scroll-behavior: smooth; }
   max-width: 700px;
   margin: 0 auto;
 }
+.cta-content h2 {
+  color: #fff;
+  text-shadow: 0 0 18px rgba(0, 0, 0, 0.35);
+}
+.cta-content p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* CTA button */
 .cta-btn {
   background: linear-gradient(135deg, var(--accent), var(--primary));
   border: none;
@@ -400,6 +550,11 @@ html { scroll-behavior: smooth; }
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 12px 35px rgba(0,183,255,0.45);
   filter: brightness(1.15);
+}
+
+@media (max-width: 768px) {
+  .cta-content h2 { font-size: 1.9rem; }
+  .cta-btn { padding: 0.75rem 2.5rem; font-size: 0.95rem; }
 }
 
 /* ========================================================
@@ -417,17 +572,24 @@ html { scroll-behavior: smooth; }
 }
 
 /* Inputs */
-.contact-input, .contact-textarea {
+.contact-input,
+.contact-textarea {
   background: #f1f5f9;
   border: none;
   border-radius: 50px;
   padding: 1rem 1.5rem;
   box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
   transition: all 0.3s ease;
+  color: inherit;
 }
-.contact-textarea { border-radius: 20px; resize: none; }
+.contact-textarea {
+  border-radius: 20px;
+  resize: none;
+}
 
-.contact-input:focus, .contact-textarea:focus {
+/* Focus ring */
+.contact-input:focus,
+.contact-textarea:focus {
   background: #fff;
   box-shadow: 0 0 0 3px rgba(29,78,216,0.25);
   outline: none;
@@ -448,6 +610,29 @@ html { scroll-behavior: smooth; }
   box-shadow: 0 12px 30px rgba(0,183,255,0.45);
 }
 
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .contact-form { padding: 2.5rem; }
+  .contact-btn { font-size: 0.95rem; }
+}
+
+/* Dark mode contact */
+@media (prefers-color-scheme: dark) {
+  .contact-section {
+    background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+  }
+  .contact-form { background: #1e293b; color: #e2e8f0; }
+  .contact-input,
+  .contact-textarea {
+    background: #334155;
+    color: #e2e8f0;
+  }
+  .contact-input:focus,
+  .contact-textarea:focus {
+    box-shadow: 0 0 0 3px rgba(0,183,255,0.3);
+  }
+}
+
 /* ========================================================
    10. FOOTER
 ======================================================== */
@@ -458,6 +643,7 @@ html { scroll-behavior: smooth; }
   position: relative;
   padding: 4rem 1rem;
 }
+
 .footer-gradient-bar {
   width: 120px;
   height: 4px;
@@ -465,6 +651,7 @@ html { scroll-behavior: smooth; }
   border-radius: 3px;
   margin: 0 auto 1.5rem;
 }
+
 .footer-link {
   color: #93c5fd;
   text-decoration: none;
@@ -479,11 +666,15 @@ html { scroll-behavior: smooth; }
 /* Back to top button */
 .back-to-top-btn {
   position: fixed;
-  bottom: 25px; right: 25px;
-  width: 48px; height: 48px;
+  bottom: 25px;
+  right: 25px;
+  width: 48px;
+  height: 48px;
   background: linear-gradient(135deg, var(--primary), var(--accent));
   color: #fff;
-  display: flex; align-items: center; justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
   box-shadow: 0 4px 15px rgba(0,183,255,0.35);
   transition: all 0.4s ease;
@@ -495,20 +686,32 @@ html { scroll-behavior: smooth; }
   box-shadow: 0 8px 25px rgba(0,183,255,0.5);
   opacity: 1;
 }
+
+/* JS toggles this */
 .back-to-top-btn.hide {
   opacity: 0;
   pointer-events: none;
   transform: translateY(20px);
 }
 
+/* Responsive footer padding + smaller button on mobile */
+@media (max-width: 768px) {
+  .footer-section .container { padding: 3rem 1.5rem; }
+  .back-to-top-btn {
+    width: 42px;
+    height: 42px;
+  }
+}
+
 /* ========================================================
    11. UTILITIES & ANIMATIONS
 ======================================================== */
 
-/* Scroll progress bar at top */
+/* Scroll progress bar at very top */
 .scroll-progress {
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   height: 3px;
   background: linear-gradient(90deg, var(--accent), var(--primary));
   width: 0%;
@@ -516,7 +719,7 @@ html { scroll-behavior: smooth; }
   transition: width 0.2s ease-out;
 }
 
-/* Fade slide-in for success messages */
+/* Fade-in success alert */
 @keyframes fadeSlideIn {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -525,29 +728,22 @@ html { scroll-behavior: smooth; }
   animation: fadeSlideIn 0.5s ease forwards;
 }
 
-/* Accessibility utility */
+/* Visually hidden but accessible */
 .visually-hidden {
   position: absolute;
-  width: 1px; height: 1px;
-  padding: 0; margin: -1px;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
   overflow: hidden;
   clip: rect(0,0,0,0);
   white-space: nowrap;
   border: 0;
 }
 
-/* Focus-within animation for form labels */
+/* Form label focus state */
 .form-group:focus-within label {
   color: var(--primary);
   transform: translateY(-2px);
   transition: all 0.2s ease;
-}
-
-/* Gentle hue rotation for background dynamism */
-body.loaded {
-  animation: hueShift 30s linear infinite;
-}
-@keyframes hueShift {
-  0%,100% { filter: hue-rotate(0deg); }
-  50% { filter: hue-rotate(4deg); }
 }
