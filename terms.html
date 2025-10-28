@@ -5,37 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Terms of Use | VelocityCraft</title>
   <meta name="description" content="Read the terms and conditions for using the VelocityCraft website.">
-  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/style.css" rel="stylesheet">
-  <!-- Icon fonts required by footer and navbar -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <meta name="theme-color" content="#1d4ed8">
+  <meta name="color-scheme" content="light dark">
+  <link rel="canonical" href="https://www.velocitycraft.com/terms.html">
 
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+  <!-- Preconnects -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Google Fonts (optimized non-blocking) -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
+
+  <!-- Icon Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <!-- Core Styles -->
+  <link rel="preload" href="css/bootstrap.min.css?ver=1" as="style" onload="this.rel='stylesheet'">
+  <link rel="preload" href="css/style.css?ver=1" as="style" onload="this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="css/bootstrap.min.css?ver=1">
+    <link rel="stylesheet" href="css/style.css?ver=1">
+  </noscript>
+
+  <!-- Inline critical CSS -->
   <style>
-    body { font-family: 'Inter', sans-serif; color: #1a1a1a; background: #f8fafc; }
-    h1, h2 { color: #0f172a; }
-    section { max-width: 800px; margin: 4rem auto; padding: 0 1rem; }
-    .terms-section h2 { font-size: 1.4rem; margin-top: 2rem; }
-    .terms-section p, li { line-height: 1.7; color: #334155; }
-    footer { margin-top: 4rem; }
-    @media (prefers-color-scheme: dark) {
-      body { background: #0f172a; color: #e2e8f0; }
-      h1, h2 { color: #fff; }
+    body {font-family:'Inter',sans-serif;color:#1a1a1a;background:#f8fafc;}
+    h1,h2{color:#0f172a;}
+    section{max-width:800px;margin:4rem auto;padding:0 1rem;}
+    .terms-section h2{font-size:1.4rem;margin-top:2rem;}
+    .terms-section p,li{line-height:1.7;color:#334155;}
+    @media(prefers-color-scheme:dark){
+      body{background:#0f172a;color:#e2e8f0;}
+      h1,h2{color:#fff;}
     }
   </style>
 </head>
 
-<body>
+<body style="content-visibility:auto">
+
   <!-- Topbar -->
   <div class="container-fluid d-none d-lg-block py-2 px-4 topbar text-light" style="background:rgba(15,23,42,0.95);">
     <div class="d-flex justify-content-between align-items-center">
       <small class="d-flex align-items-center gap-2">
         <i class="fa fa-envelope text-primary"></i>
-        <a href="mailto:info@velocitycraft.com" class="text-light text-decoration-none hover-bright">
-          info@velocitycraft.com
-        </a>
+        <a href="mailto:info@velocitycraft.com" class="text-light text-decoration-none hover-bright">info@velocitycraft.com</a>
       </small>
     </div>
   </div>
@@ -43,157 +65,93 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg sticky-top px-4 py-2 modern-nav">
     <a href="/" class="navbar-brand d-flex align-items-center">
-      <img src="img/VelocityCraft-Logo.avif" alt="VelocityCraft" class="logo-img" style="height:50px;">
+      <img src="img/VelocityCraft-Logo.avif?ver=1" alt="VelocityCraft Logo" width="180" height="42">
     </a>
     <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <div class="navbar-nav ms-auto">
-        <a href="index.html#home" class="nav-item nav-link">Home</a>
-        <a href="index.html#about" class="nav-item nav-link">About</a>
-        <a href="index.html#services" class="nav-item nav-link">Services</a>
-        <a href="index.html#contact" class="nav-item nav-link">Contact</a>
+        <a href="/#home" class="nav-item nav-link">Home</a>
+        <a href="/#about" class="nav-item nav-link">About</a>
+        <a href="/#services" class="nav-item nav-link">Services</a>
+        <a href="/#contact" class="nav-item nav-link">Contact</a>
       </div>
     </div>
   </nav>
 
-  <!-- Terms of Use -->
+  <!-- Terms Section -->
   <section class="terms-section">
     <h1 class="fw-bold mb-4">Terms of Use</h1>
     <p><strong>Effective Date:</strong> October 27, 2025</p>
     <p>These Terms of Use (“Terms”) govern your access to and use of the VelocityCraft website (<a href="https://velocitycraft.com">velocitycraft.com</a>). By accessing or using this website, you agree to comply with these Terms.</p>
 
     <h2>1. General Information</h2>
-    <p>VelocityCraft, LLC (“we,” “our,” or “us”) provides business advisory content and information for general educational and informational purposes. Nothing on this site constitutes investment, legal, tax, or financial advice.</p>
+    <p>VelocityCraft, LLC (“we,” “our,” or “us”) provides business advisory content and information for general educational purposes. Nothing on this site constitutes investment, legal, tax, or financial advice.</p>
 
     <h2>2. Use of the Website</h2>
     <ul>
-      <li>You may use this site only for lawful purposes and in accordance with these Terms.</li>
-      <li>You agree not to misuse the site, attempt unauthorized access, or disrupt its operation.</li>
-      <li>We reserve the right to modify, suspend, or discontinue any part of the site at any time without notice.</li>
+      <li>Use the site only for lawful purposes under these Terms.</li>
+      <li>Do not misuse or attempt unauthorized access.</li>
+      <li>We may modify or suspend site access without notice.</li>
     </ul>
 
     <h2>3. Intellectual Property</h2>
-    <p>All content, text, images, graphics, and logos on this site are the property of VelocityCraft, LLC or its licensors and are protected by copyright and trademark law. You may not copy, distribute, or reproduce any content without prior written permission.</p>
+    <p>All site content is owned by VelocityCraft, LLC or its licensors. You may not copy or reuse it without written permission.</p>
 
     <h2>4. No Warranties</h2>
-    <p>This website and its content are provided “as is” and “as available.” VelocityCraft makes no warranties, express or implied, including but not limited to accuracy, reliability, or fitness for a particular purpose. Your use of this site is at your own risk.</p>
+    <p>The site and its content are provided “as is.” VelocityCraft makes no express or implied warranties of accuracy or suitability. Use is at your own risk.</p>
 
     <h2>5. Limitation of Liability</h2>
-    <p>To the fullest extent permitted by law, VelocityCraft, LLC and its affiliates shall not be liable for any direct, indirect, incidental, or consequential damages arising from your use or inability to use the website or reliance on its content.</p>
+    <p>VelocityCraft and affiliates are not liable for damages arising from use or inability to use this site, to the extent permitted by law.</p>
 
     <h2>6. External Links</h2>
-    <p>Our website may include links to third-party websites. We are not responsible for their content, accuracy, or privacy practices, and inclusion of such links does not imply endorsement.</p>
+    <p>Linked third-party sites are not under our control. Inclusion of such links does not imply endorsement.</p>
 
     <h2>7. Governing Law</h2>
-    <p>These Terms are governed by the laws of the State of Colorado, United States, without regard to its conflict of law principles. Any disputes shall be resolved exclusively in the state or federal courts located in Colorado.</p>
+    <p>These Terms are governed by Colorado law. Disputes are resolved in courts located in Colorado, U.S.A.</p>
 
-    <h2>8. Changes to These Terms</h2>
-    <p>We may update or modify these Terms from time to time. Continued use of the website after changes constitutes acceptance of the updated Terms.</p>
+    <h2>8. Updates to Terms</h2>
+    <p>We may update these Terms periodically. Continued use signifies acceptance of any changes.</p>
 
     <h2>9. Contact Us</h2>
-    <p>If you have questions about these Terms, contact:<br>
-    VelocityCraft, LLC<br>
-    Email: <a href="mailto:info@velocitycraft.com">info@velocitycraft.com</a></p>
+    <p>For questions, contact:<br>VelocityCraft, LLC<br>Email: <a href="mailto:info@velocitycraft.com">info@velocitycraft.com</a></p>
   </section>
 
-  <!-- ================= FOOTER ================= -->
-<footer class="footer-section text-center text-light position-relative">
-  <div class="container py-5">
-    <!-- Decorative gradient bar -->
-    <div class="footer-gradient-bar mx-auto mb-4"></div>
+  <!-- Footer -->
+  <footer class="footer-section text-center text-light position-relative">
+    <div class="container py-5">
+      <div class="footer-gradient-bar mx-auto mb-4"></div>
+      <p class="mb-2 small opacity-90">&copy; 2025 <a href="/" class="footer-link">VelocityCraft</a>. All rights reserved.</p>
+      <p class="mb-3 small opacity-75">
+        VelocityCraft provides strategic advisory services. It is not a registered investment advisor.
+      </p>
+      <p class="small opacity-50 mb-0">
+        VelocityCraft™ is a trademark of VelocityCraft, LLC.<br>
+        <a href="/privacy.html" class="footer-link">Privacy Policy</a> · 
+        <a href="/terms.html" class="footer-link">Terms of Use</a>
+      </p>
+    </div>
+    <a href="#top" class="back-to-top-btn" aria-label="Back to top"><i class="bi bi-arrow-up"></i></a>
+  </footer>
 
-    <!-- Branding -->
-    <p class="mb-2 small opacity-90">
-      &copy; 2025 <a href="/" class="footer-link">VelocityCraft</a>. All rights reserved.
-    </p>
+  <!-- Footer Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const btn = document.querySelector(".back-to-top-btn");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) btn.classList.remove("hide");
+        else btn.classList.add("hide");
+      });
+      btn.addEventListener("click", e => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    });
+  </script>
 
-    <!-- Disclaimer -->
-    <p class="mb-3 small opacity-75">
-      VelocityCraft provides strategic advisory services in corporate transformation, investor communications, 
-      and organizational strategy. The firm is <strong>not a registered investment advisor</strong> and does not offer 
-      investment, legal, or tax advice.
-    </p>
-
-    <!-- Legal + Credits -->
-    <p class="small opacity-50 mb-0">
-      VelocityCraft™ is a trademark of VelocityCraft, LLC.<br>
-      <a href="/privacy.html" class="footer-link">Privacy Policy</a> · 
-      <a href="/terms.html" class="footer-link">Terms of Use</a><br>
-      Design framework adapted from 
-      <a href="https://htmlcodex.com" class="footer-link">HTML Codex</a>.
-    </p>
-  </div>
-
-  <!-- Back to Top Button -->
-  <a href="#top" class="back-to-top-btn" aria-label="Back to top">
-    <i class="bi bi-arrow-up"></i>
-  </a>
-</footer>
-
-<!-- ================= FOOTER STYLES ================= -->
-<style>
-  .footer-section {
-    background: linear-gradient(180deg, #0f172a 0%, #020617 100%);
-    color: #e2e8f0;
-    position: relative;
-  }
-
-  .footer-gradient-bar {
-    width: 120px;
-    height: 4px;
-    background: linear-gradient(90deg, #1d4ed8, #00b7ff);
-    border-radius: 3px;
-  }
-
-  .footer-link {
-    color: rgba(255,255,255,0.45);
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
-  .footer-link:hover {
-    color: #fff;
-    text-decoration: underline;
-  }
-
-  .back-to-top-btn {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    width: 48px;
-    height: 48px;
-    background: linear-gradient(135deg, #1d4ed8, #00b7ff);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    box-shadow: 0 4px 15px rgba(0,183,255,0.35);
-    transition: all 0.4s ease;
-    opacity: 0.9;
-    z-index: 50;
-  }
-  .back-to-top-btn:hover {
-    transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 8px 25px rgba(0,183,255,0.5);
-    opacity: 1;
-  }
-
-  /* Ensure footer visible on short pages */
-  html, body {
-    height: 100%;
-  }
-  body {
-    display: flex;
-    flex-direction: column;
-  }
-  footer {
-    margin-top: auto;
-  }
-</style>
-
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Core JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="js/main.js?ver=1" defer></script>
 </body>
 </html>
