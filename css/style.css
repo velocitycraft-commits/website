@@ -483,6 +483,30 @@ h6,
 }
 
 
+.hero-section {
+  perspective: 1000px;
+  overflow: hidden;
+}
+.hero-content {
+  transform: translateZ(60px);
+  animation: heroFloat 10s ease-in-out infinite alternate;
+}
+@keyframes heroFloat {
+  from { transform: translateY(0) translateZ(60px); }
+  to   { transform: translateY(-10px) translateZ(60px); }
+}
+
+
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #00b7ff, #1d4ed8);
+  width: 0%;
+  z-index: 9999;
+  transition: width 0.2s ease-out;
+}
+
 
 
 
