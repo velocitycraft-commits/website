@@ -557,6 +557,15 @@ button:active {
   .cta-btn { padding: 0.75rem 2.5rem; font-size: 0.95rem; }
 }
 
+.cta-section {
+  background: linear-gradient(135deg, #0d2150, #1d4ed8);
+  color: #fff;
+  padding: 6rem 1rem;
+  position: relative;
+  text-align: center;
+}
+
+
 /* ========================================================
    9. CONTACT SECTION
 ======================================================== */
@@ -767,6 +776,7 @@ body {
 [data-aos] {
   transform: translateZ(0);
 }
+
 
 
 
