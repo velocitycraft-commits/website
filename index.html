@@ -89,6 +89,47 @@
       href="https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2"
       as="font" type="font/woff2" crossorigin>
 
+  <!-- AOS (Animate on Scroll) -->
+<script src="https://unpkg.com/aos@next/dist/aos.js" defer></script>
+<script>
+  window.addEventListener('load', () => {
+    requestAnimationFrame(() => {
+      AOS.init({
+        duration: 800,
+        easing: 'ease-out-quad',
+        once: true,
+        throttleDelay: 200
+      });
+
+      // Throttle AOS refresh on resize
+      let aosTimeout;
+      window.addEventListener('resize', () => {
+        clearTimeout(aosTimeout);
+        aosTimeout = setTimeout(() => AOS.refresh(), 300);
+      });
+    });
+  });
+</script>
+
+
+  <!-- Font Display Optimization -->
+<style>
+@font-face {
+  font-family: "Font Awesome 6 Free";
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/webfonts/fa-solid-900.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "bootstrap-icons";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/bootstrap-icons.woff2") format("woff2");
+}
+</style>
 
   <!-- Non-blocking CSS Preloads -->
 
@@ -116,50 +157,6 @@
   <script>
     window.addEventListener('load', () => document.body.classList.add('loaded'));
   </script>
-
-<!-- AOS (Animate on Scroll) -->
-<script src="https://unpkg.com/aos@next/dist/aos.js" defer></script>
-<script>
-  window.addEventListener('load', () => {
-    requestAnimationFrame(() => {
-      AOS.init({
-        duration: 800,
-        easing: 'ease-out-quad',
-        once: true,
-        throttleDelay: 200
-      });
-
-      // Throttle AOS refresh on resize
-      let aosTimeout;
-      window.addEventListener('resize', () => {
-        clearTimeout(aosTimeout);
-        aosTimeout = setTimeout(() => AOS.refresh(), 300);
-      });
-    });
-  });
-</script>
-
-
-
-
-  <!-- Font Display Optimization -->
-<style>
-@font-face {
-  font-family: "Font Awesome 6 Free";
-  font-style: normal;
-  font-weight: 900;
-  font-display: swap;
-  src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/webfonts/fa-solid-900.woff2") format("woff2");
-}
-
-@font-face {
-  font-family: "bootstrap-icons";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/fonts/bootstrap-icons.woff2") format("woff2");
-}
-</style>
 
 
 
