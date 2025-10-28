@@ -956,7 +956,7 @@ Work with VelocityCraft to turn strategic intent into measurable performance.   
     </div>
 
     <!-- Contact Form -->
-   <form action="https://formspree.io/f/mzzkeklv" method="POST" 
+   <form  id="contact-form" action="https://formspree.io/f/mzzkeklv" method="POST" 
       class="contact-form bg-white p-5 rounded-4 shadow-lg mx-auto" 
       data-aos="fade-up" data-aos-delay="150">
   
@@ -994,6 +994,9 @@ Work with VelocityCraft to turn strategic intent into measurable performance.   
   </button>
 </form>
 
+    <!-- Success / error message placeholder -->
+<div id="form-status" class="text-center mt-4 fw-semibold"></div>
+    
   </div>
 </section>
 
@@ -1193,18 +1196,60 @@ Work with VelocityCraft to turn strategic intent into measurable performance.   
 
 
 
-  <script>
+<script>
 window.addEventListener('DOMContentLoaded', () => {
+  /* --- Navbar collapse logic --- */
   const collapseEl = document.getElementById('navbarCollapse');
-  if (!collapseEl) return;
-  collapseEl.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      const inst = bootstrap.Collapse.getInstance(collapseEl) || new bootstrap.Collapse(collapseEl, {toggle:false});
-      inst.hide();
+  if (collapseEl) {
+    collapseEl.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        const inst = bootstrap.Collapse.getInstance(collapseEl) || new bootstrap.Collapse(collapseEl, {toggle:false});
+        inst.hide();
+      });
     });
-  });
+  }
+
+  /* --- Formspree submission handler --- */
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+  if (form && status) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      status.innerHTML = "Sending...";
+      status.style.color = "#1d4ed8";
+
+      try {
+        const data = new FormData(form);
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: data,
+          headers: { "Accept": "application/json" }
+        });
+
+        if (response.ok) {
+          form.reset();
+          status.innerHTML = `
+            <div class="alert alert-success mt-4 rounded-4 p-4"
+                 style="background:linear-gradient(135deg,#00b7ff,#1d4ed8);color:#fff;">
+              <h5 class="fw-bold mb-2">Message sent successfully!</h5>
+              <p class="mb-0">Thank you for contacting VelocityCraft. We’ll be in touch soon.</p>
+            </div>`;
+        } else {
+          throw new Error("Network error");
+        }
+      } catch {
+        status.innerHTML = `
+          <div class="alert alert-danger mt-4 rounded-4 p-4">
+            <strong>Something went wrong.</strong> Please try again later or email us directly at 
+            <a href="mailto:info@velocitycraft.com" class="text-white">info@velocitycraft.com</a>.
+          </div>`;
+      }
+    });
+  }
 });
 </script>
+
 
 
 
