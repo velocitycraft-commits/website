@@ -1206,7 +1206,7 @@ window.addEventListener('DOMContentLoaded', () => {
   if (collapseEl) {
     collapseEl.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', () => {
-        const inst = bootstrap.Collapse.getInstance(collapseEl) || new bootstrap.Collapse(collapseEl, {toggle:false});
+        const inst = bootstrap.Collapse.getInstance(collapseEl) || new bootstrap.Collapse(collapseEl,{toggle:false});
         inst.hide();
       });
     });
@@ -1218,7 +1218,6 @@ window.addEventListener('DOMContentLoaded', () => {
   if (form && status) {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-
       status.innerHTML = "Sending...";
       status.style.color = "#1d4ed8";
 
@@ -1238,6 +1237,8 @@ window.addEventListener('DOMContentLoaded', () => {
               <h5 class="fw-bold mb-2">Message sent successfully!</h5>
               <p class="mb-0">Thank you for contacting VelocityCraft. We’ll be in touch soon.</p>
             </div>`;
+          status.scrollIntoView({behavior:"smooth",block:"center"});
+          setTimeout(()=>status.innerHTML="",7000);
         } else {
           throw new Error("Network error");
         }
@@ -1250,8 +1251,19 @@ window.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  /* --- Scroll progress indicator --- */
+  const progressBar = document.querySelector('.scroll-progress');
+  if (progressBar) {
+    window.addEventListener('scroll', () => {
+      const maxScroll = document.body.scrollHeight - window.innerHeight;
+      const percent = (window.scrollY / maxScroll) * 100;
+      progressBar.style.width = percent + '%';
+    });
+  }
 });
 </script>
+
 
 
 
