@@ -508,18 +508,7 @@ h6,
 }
 
 
-[data-aos] {
-  position: relative;
-}
-[data-aos]::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.9), transparent 30%);
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-[data-aos].aos-animate::before { opacity: 1; }
+
 
 
 .btn::after {
@@ -557,6 +546,7 @@ body.loaded {
   transform: translateY(-2px);
   transition: all 0.2s ease;
 }
+
 
 
 
