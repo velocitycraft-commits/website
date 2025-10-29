@@ -93,27 +93,6 @@
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 </noscript>
 
-  <!-- AOS (Animate on Scroll) -->
-<script src="https://unpkg.com/aos@next/dist/aos.js" defer></script>
-<script>
-  window.addEventListener('load', () => {
-    requestAnimationFrame(() => {
-      AOS.init({
-        duration: 800,
-        easing: 'ease-out-quad',
-        once: true,
-        throttleDelay: 200
-      });
-
-      // Throttle AOS refresh on resize
-      let aosTimeout;
-      window.addEventListener('resize', () => {
-        clearTimeout(aosTimeout);
-        aosTimeout = setTimeout(() => AOS.refresh(), 300);
-      });
-    });
-  });
-</script>
 
 
   <!-- Font Display Optimization -->
@@ -154,7 +133,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   </noscript>
 
+ <!-- AOS (Animate on Scroll) -->
+<script src="https://unpkg.com/aos@next/dist/aos.js" defer></script>
+<script>
+  window.addEventListener('load', () => {
+    requestAnimationFrame(() => {
+      AOS.init({
+        duration: 800,
+        easing: 'ease-out-quad',
+        once: true,
+        throttleDelay: 200
+      });
 
+      // Throttle AOS refresh on resize
+      let aosTimeout;
+      window.addEventListener('resize', () => {
+        clearTimeout(aosTimeout);
+        aosTimeout = setTimeout(() => AOS.refresh(), 300);
+      });
+    });
+  });
+</script>
 
   <!-- Page Load Animation Script -->
   <script>
